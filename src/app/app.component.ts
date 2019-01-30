@@ -17,20 +17,22 @@ export class AppComponent {
     },
 	{
 		title: 'Add New Motivation',
-		url: '/newMotivation',
+		url: '/new-motivation',
 		icon: 'flash'
 	},
 	{
 		title: 'Detailed View',
+		url: '/detail',
 		icon: 'checkmark-circle-outline'
 	},
     {
       title: 'Calendar View',
-      url: '/list',
+      url: '/calerdar',
       icon: 'calendar'
     },
 	{
 		title: 'Settings',
+		url: '/setting',
 		icon: 'cog'
 	}
   ];
