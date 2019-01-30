@@ -15,11 +15,24 @@ export class AppComponent {
       url: '/home',
       icon: 'home'
     },
+	{
+		title: 'Add New Motivation',
+		url: '/newMotivation',
+		icon: 'flash'
+	},
+	{
+		title: 'Detailed View',
+		icon: 'checkmark-circle-outline'
+	},
     {
-      title: 'Calendar',
+      title: 'Calendar View',
       url: '/list',
-      icon: 'grid'
-    }
+      icon: 'calendar'
+    },
+	{
+		title: 'Settings',
+		icon: 'cog'
+	}
   ];
 
   constructor(
