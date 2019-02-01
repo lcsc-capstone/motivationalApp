@@ -6,10 +6,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./new-motivation.page.scss'],
 })
 export class NewMotivationPage implements OnInit {
+	enableAlarm: boolean;
+	now: any;
+	constructor() { 
+		this.enableAlarm = false;
+		this.now = new Date();
+		this.now = this.now.toString();
+	}
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+	ngOnInit() {}
+	stopDateToggle(){ 
+		this.enableAlarm = !this.enableAlarm;
+	}
+	getNow(){
+		return this.now.getDate;
+		
+	}
 }
