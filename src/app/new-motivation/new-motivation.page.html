@@ -12,7 +12,7 @@
 		<ion-item>
 			<ion-label>Motivation Name: </ion-label> 
 			<!-- What do you think this does? It's the Name... For the Motivation... What did you expect? -->
-			<ion-input placeholder="..." inputmode="text" maxlength=20 required="true" class="align-right" ></ion-input><!-- Tabs in the placeholder are they themselves placeholders, until proper SCC in implemented -->
+			<ion-input placeholder="..." inputmode="text" maxlength=20 required="true" name="name" class="align-right" ></ion-input><!-- Tabs in the placeholder are they themselves placeholders, until proper SCC in implemented -->
 		</ion-item>
 		<ion-item>
 			<ion-label>Default Motivations</ion-label>
@@ -26,13 +26,13 @@
 				<ion-select-option value="remind">Reminder</ion-select-option>
 				<ion-select-option value="food">Food</ion-select-option>
 				<ion-select-option value="zzz">Sleep</ion-select-option>
-				<!-- Defaults will change values below. If Values are changed, this value will be changed to "Custom" -->
+				<!-- Defaults will change values below. If Values are changed, this value will be changed to "Custom". Does not modify Form Data -->
 				<ion-select-option value="custom">Custom</ion-select-option>
 			</ion-select>
 		</ion-item>
 		<ion-item>
 			<ion-label>When to Remind</ion-label>
-			<ion-select placeholder = "Select One...">
+			<ion-select placeholder = "Select One..." name="time">
 				<ion-select-option value="month">Monthly</ion-select-option>
 				<ion-select-option value="week">Weekly</ion-select-option>
 				<ion-select-option value="day">Daily</ion-select-option>
@@ -46,24 +46,32 @@
 		</ion-item>
 		<ion-item>
 			<ion-label>First Reminder</ion-label> <!-- Time for the First, or only, Reminder -->
-			<ion-datetime display-format="MMM DD, YYYY HH:mm" picker-format= "MMM DD, YYYY HH:mm" [min] = "getNow()" id="firstDate"></ion-datetime>
+			<ion-datetime display-format="MMM DD, YYYY HH:mm" picker-format= "MMM DD, YYYY HH:mm" [min] = "getNow()" id="firstDate" name="firstDate"></ion-datetime>
 			<!--Dunno if "min" is working the way its supposed to. Needs testing when we submit forms-->
 		</ion-item>
 		<ion-item>
 			<ion-label>Remind Indefinitely?</ion-label> <!-- Turns on and off the "Stop Date" Item -->
-			<ion-toggle checked="true" (ionChange)="stopDateToggle()" id="indefToggle"></ion-toggle>
+			<ion-toggle checked="true" (ionChange)="stopDateToggle()" id="indefToggle" name="indef"></ion-toggle>
 			<!-- In the database, we should have a way to N/A or void our "stop date" column -->
 		</ion-item>
 		<ion-item>
 			<ion-label>Stop Date</ion-label> <!-- Date to Stop Reminders --> 
-			<ion-datetime display-format="MMM DD, YYYY" picker-format="MMM DD, YYYY" [disabled]="!enableAlarm" [min] = "getNow()" id="stopDate"></ion-datetime>
+			<ion-datetime display-format="MMM DD, YYYY" picker-format="MMM DD, YYYY" [disabled]="!enableAlarm" [min] = "getNow()" id="stopDate" name="stopDate"></ion-datetime>
 			<!--Dunno if "min" is working the way its supposed to. Needs testing when we submit forms-->
 		</ion-item>
 		<ion-item>
 			<ion-label>Reminder Sounds</ion-label> <!-- Selector for the sounds that will play for the reminder. Will be split into our Items and the Devices --> 
-			<ion-select placeholder="...">
+			<ion-select placeholder="..." name="sound">
 				<!-- Need to find a way to auto-populate this list with the sounds on their device, and our own sounds we are adding -->
 			</ion-select>
 		</ion-item>
 	</ion-list>
 </ion-content>
+<!-- Form Data will be
+String name - Name of the Reminder
+String time - How often to Remind
+datetime firstDate - The First time and date to Remind
+Boolean indef - If Stop Date is applicable; True for no stop date, False for a stop date (Set Default stopDate in the case of True?)
+datetime stopDate - The Date to stop this Reminder
+String Sound - The pathway(?) to the sound to play for Motivation
+-->
