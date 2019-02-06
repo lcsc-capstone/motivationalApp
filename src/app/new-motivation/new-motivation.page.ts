@@ -19,7 +19,30 @@ export class NewMotivationPage implements OnInit {
 		this.enableAlarm = !this.enableAlarm;
 	}
 	getNow(){
-		return this.now.getDate;
-		
+		return this.now.getDate;	
 	}
-}
+/*	setDefaults(){
+		var e = document.getElementById("defaults");
+		switch(e.value){
+			case "water":
+				break;
+			case "clean":
+				break;
+			case "dishes":
+				break;
+			case "workout":
+				break;
+			case "meeting":
+				break;
+			case "med":
+				break;
+			case "remind":
+				break;
+			case "food":
+				break;
+			case "zzz":
+				break;
+		}
+				
+		}*/
+	}
