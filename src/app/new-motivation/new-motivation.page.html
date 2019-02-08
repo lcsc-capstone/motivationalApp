@@ -12,11 +12,11 @@
 		<ion-item>
 			<ion-label>Motivation Name: </ion-label> 
 			<!-- What do you think this does? It's the Name... For the Motivation... What did you expect? -->
-			<ion-input placeholder="..." inputmode="text" maxlength=20 required="true" name="name" class="align-right" ></ion-input><!-- Tabs in the placeholder are they themselves placeholders, until proper SCC in implemented -->
+			<ion-input placeholder="..." inputmode="text" maxlength=20 required="true" [value]="name" class="align-right" ></ion-input><!-- Tabs in the placeholder are they themselves placeholders, until proper SCC in implemented -->
 		</ion-item>
 		<ion-item>
 			<ion-label>Motivation Types</ion-label>
-			<ion-select placeholder="..." id="defaults">
+			<ion-select placeholder="..." id="defaults" [(ngModel)]="selected" (ionChange)="setDefaults()">
 				<ion-select-option value="water">Water</ion-select-option>
 				<ion-select-option value="clean">Cleaning</ion-select-option>
 				<ion-select-option value="dishes">Dishes</ion-select-option>
@@ -28,11 +28,11 @@
 				<ion-select-option value="zzz">Sleep</ion-select-option>
 				<!-- Types will change values below. Types will not be in Form Data -->
 			</ion-select>
-	<!--(ionChage)="setDefaults()"-->
+
 		</ion-item>
 		<ion-item>
 			<ion-label>When to Remind</ion-label>
-			<ion-select placeholder = "Select One..." name="time">
+			<ion-select placeholder = "Select One..." name="time" [ngModel]="remind">
 				<ion-select-option value="month">Monthly</ion-select-option>
 				<ion-select-option value="week">Weekly</ion-select-option>
 				<ion-select-option value="day">Daily</ion-select-option>
@@ -46,7 +46,7 @@
 		</ion-item>
 		<ion-item>
 			<ion-label>First Reminder</ion-label> <!-- Time for the First, or only, Reminder -->
-			<ion-datetime display-format="MMM DD, YYYY HH:mm" picker-format= "MMM DD, YYYY HH:mm" [min] = "getNow()" id="firstDate" name="firstDate"></ion-datetime>
+			<ion-datetime display-format="MMM DD, YYYY HH:mm" picker-format= "MMM DD, YYYY HH:mm" [min] = "getNow()" id="firstDate" name="firstDate" [value]="firstRemind"></ion-datetime>
 			<!--Dunno if "min" is working the way its supposed to. Needs testing when we submit forms-->
 		</ion-item>
 		<ion-item>

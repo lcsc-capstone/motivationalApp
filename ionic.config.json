@@ -1,5 +1,7 @@
 {
   "name": "MotivationalApp",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
