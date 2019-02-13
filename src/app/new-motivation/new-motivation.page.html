@@ -26,6 +26,7 @@
 				<ion-select-option value="remind">Reminder</ion-select-option>
 				<ion-select-option value="food">Food</ion-select-option>
 				<ion-select-option value="zzz">Sleep</ion-select-option>
+				<ion-select-option value="hw">Homework Assignment</ion-select-option>
 				<!-- Types will change values below. Types will not be in Form Data -->
 			</ion-select>
 
@@ -51,12 +52,12 @@
 		</ion-item>
 		<ion-item>
 			<ion-label>Remind Indefinitely?</ion-label> <!-- Turns on and off the "Stop Date" Item -->
-			<ion-toggle checked="true" (ionChange)="stopDateToggle()" id="indefToggle" name="indef"></ion-toggle>
+			<ion-toggle checked="true" (ionChange)="stopDateToggle()" id="indefToggle" name="indef" [checked] = "alarmValue"></ion-toggle>
 			<!-- In the database, we should have a way to N/A or void our "stop date" column -->
 		</ion-item>
 		<ion-item>
 			<ion-label>Stop Date</ion-label> <!-- Date to Stop Reminders --> 
-			<ion-datetime display-format="MMM DD, YYYY" picker-format="MMM DD, YYYY" [disabled]="!enableAlarm" [min] = "getNow()" id="stopDate" name="stopDate"></ion-datetime>
+			<ion-datetime display-format="MMM DD, YYYY" picker-format="MMM DD, YYYY" [disabled]="!enableAlarm" [min] = "getNow()" id="stopDate" name="stopDate" [value]="lastRemind"></ion-datetime>
 			<!--Dunno if "min" is working the way its supposed to. Needs testing when we submit forms-->
 		</ion-item>
 		<ion-item>
@@ -65,6 +66,7 @@
 				<!-- Need to find a way to auto-populate this list with the sounds on their device, and our own sounds we are adding -->
 			</ion-select>
 		</ion-item>
+		<ion-button>Get Motivated!</ion-button>
 	</ion-list>
 </ion-content>
 <!-- Form Data will be

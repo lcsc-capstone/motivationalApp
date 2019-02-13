@@ -1,7 +1,5 @@
 {
-  "name": "MotivationalApp",
-  "integrations": {
-    "cordova": {}
-  },
+  "name": "New Ionic App",
+  "integrations": {},
   "type": "angular"
 }
