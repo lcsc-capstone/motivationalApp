@@ -1,22 +1,31 @@
 .accordion{
-	
+	padding: 0px;
+	margin-bottom: 10px;
+	.active{
+		min-height: 5px;
+	}
 }
 .accordionHeader{
-	padding: 8px 10px;
-	
+	background: #eee;
 	width: 100%;
 	height: 100%;
 }
 .accordionLabel{
-	display: block;
-	z-index: 1;
+	display:inline-block;
+	float: left;
+	background: #eee;
+	height: 100%;
 }
+
 .accordionPanel {
-    display: block;
-    border-radius: 5px;   
+    float: center;
+    border-radius: 0px;   
     background: #eee; 
-    padding: 10px;
+    padding: 0px;
     width: 100%;
     height: 100%;
+}
+ion-button{
+	
 }
 

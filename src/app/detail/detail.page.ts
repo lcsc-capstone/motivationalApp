@@ -34,6 +34,6 @@ export class DetailPage implements OnInit {
 		keeps track of whether or not a group is hidden
 	*/
   	isGroupShown(group) {
-      		return this.shownGroup === group;
+      		return this.shownGroup == group;
   	};
 }
