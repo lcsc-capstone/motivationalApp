@@ -11,14 +11,13 @@
 </ion-header>
 
 <ion-content padding>
- <ion-list>
-	<div class="accordion">
-	<ion-button class="accordionHeader" (click)="expansion=!expansion" *ngFor="let header of header">
-	{{header}}
-	</ion-button>
-      <ion-item class="accordionPanel" *ngIf="!expansion">
-	{{ items }}
-      </ion-item>
-	</div>
-  </ion-list>
+	<ion-list class="accordion"> <!--> Controls everything in the accordion list as a whole <!-->
+		<ion-item class="accordionHeader"  lines="none" *ngFor= "let item of items; let i=index" (click)="toggleGroup(i)" [ngClass]="{active: isGroupShown(i)}"> 
+		<!--> accordionHeader is in charge of creating each item for the list <!-->
+			<ion-label class="accordionLabel"> {{item.header}} </ion-label>
+			<!--> accordionLabel is being filled of items from item.header <!-->
+		   <div class="accordionPanel" *ngIf="isGroupShown(i)"> {{item.panel}}</div>
+			<!--> A div panel that is populated with information for the accordion. Is shown and hidden via clicks on the ion item <!-->
+		</ion-item>
+	</ion-list>
 </ion-content>

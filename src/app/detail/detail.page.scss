@@ -1,7 +1,22 @@
+.accordion{
+	
+}
 .accordionHeader{
+	padding: 8px 10px;
+	
 	width: 100%;
-	height: 50px;
+	height: 100%;
+}
+.accordionLabel{
+	display: block;
+	z-index: 1;
+}
+.accordionPanel {
+    display: block;
+    border-radius: 5px;   
+    background: #eee; 
+    padding: 10px;
+    width: 100%;
+    height: 100%;
 }
 
-.accordionPanel{
-}
