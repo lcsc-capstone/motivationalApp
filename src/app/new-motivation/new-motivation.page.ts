@@ -49,63 +49,54 @@ export class NewMotivationPage implements OnInit {
 				this.remind = "hour";
 				this.firstRemind = this.nowHour.toISOString();
 				this.alarmValue = true;
-				console.log(this.firstRemind);
 				break;
 			case "clean":
 				this.name = "Clean House";
 				this.remind = "week";
 				this.firstRemind = this.nowWeek.toISOString();
 				this.alarmValue = true;
-				console.log(this.firstRemind);
 				break;
 			case "dishes":
 				this.name = "Wash Dishes";
 				this.remind = "day";
 				this.firstRemind = this.nowDay.toISOString();
 				this.alarmValue = true;
-				console.log(this.firstRemind);
 				break;
 			case "workout":
 				this.name = "Go to the Gym";
 				this.remind = "day";
 				this.firstRemind = this.nowDay.toISOString();
 				this.alarmValue = true;
-				console.log(this.firstRemind);
 				break;
 			case "meeting":
 				this.name = "Meeting with Someone";
 				this.remind = "month";
 				this.firstRemind = this.nowMonth.toISOString();
 				this.alarmValue = true;
-				console.log(this.firstRemind);
 				break;
 			case "med":
 				this.name = "Take Medication";
 				this.remind = "day";
 				this.firstRemind = this.nowDay.toISOString();
 				this.alarmValue = true;
-				console.log(this.firstRemind);
 				break;
 			case "remind":
 				this.name = "Set Reminder";
 				this.remind = "joke";
 				this.firstRemind = this.nowHour.toISOString();
 				this.alarmValue = true;
-				console.log(this.firstRemind);
 				break;
 			case "food":
 				this.name = "Eat Something"
 				this.remind = "trihour";
 				this.firstRemind = this.nowHour.toISOString();
 				this.alarmValue = true;
-				console.log(this.firstRemind);
 				break;
 			case "zzz":
 				this.name = "Go to Sleep";
 				this.remind = "day";
 				this.firstRemind = this.nowDay.toISOString();
 				this.alarmValue = true;
-				console.log(this.firstRemind);
 				break;
 			case "hw":
 				this.name = "Homework Assignment";
@@ -127,19 +118,38 @@ export class NewMotivationPage implements OnInit {
 		return new Date(year, month, 0).getDate();
 	}
 	fillForm(){
-		console.log(document.getElementById("name").value + ", " + document.getElementById("remind").value + ", " + document.getElementById("firstRemind").value + ", " + document.getElementById("alarmValue").checked + ", " + document.getElementById("lastRemind").value);
-		//This may be unstable. If it breaks, it's not my fault. Blame someone else... (James)
-		//Except it is James' fault, we just don't know why it works. (Matt)
-		this.storage.set('name', document.getElementById("name").value)
-		
+		console.log(this.name + ", " + this.remind + ", " + this.firstRemind + ", " + this.alarmValue + ", " + this.lastRemind);
+		//Instability Fixed! (James)
+		this.storage.set('name', this.name).then(()=> {
+			this.storage.get('name').then((val) => {
+				console.log('Name Set ', val);
+			});
+		});
+		this.storage.set('remind', this.remind).then(()=> {
+			this.storage.get('remind').then((val) => {
+				console.log('Remind Set ', val);
+			});
+		});
+		this.storage.set('firstRemind', this.firstRemind).then(()=> {
+			this.storage.get('firstRemind').then((val) => {
+				console.log('firstRemind Set ', val);
+			});
+		});
+		this.storage.set('alarmValue', this.alarmValue).then(()=> {
+			this.storage.get('alarmValue').then((val) => {
+				console.log('alarmValue Set ', val);
+			});
+		});
+		this.storage.set('lastRemind', this.lastRemind).then(()=> {
+			this.storage.get('lastRemind').then((val) => {
+				console.log('lastRemind Set ', val);
+			});
+		});
 		this.name = "";
 		this.selected = null;
 		this.remind = "";
 		this.firstRemind = undefined;
 		this.alarmValue = true;
 		this.lastRemind = undefined;
-		this.storage.get('name').then((val) => {
-			console.log('motivation name is ', val);
-		});
 	}
 	}
