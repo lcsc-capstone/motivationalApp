@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+<<<<<<< HEAD
+=======
+import { NavController } from '@ionic/angular';
+>>>>>>> DetailPage
 
 @Component({
   selector: 'app-detail',
@@ -6,10 +10,42 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./detail.page.scss'],
 })
 export class DetailPage implements OnInit {
+<<<<<<< HEAD
 
   constructor() { }
 
   ngOnInit() {
   }
 
+=======
+	items: any; //The items array initiziler 
+	shownGroup = null; //Controlls the hidden / shown values for the div in html
+	constructor() { 
+		this.items = [
+		{ header: "This is a test", panel: "You are a test"},
+		{ header: "This is another test", panel: "You are great :)"}
+		];
+		
+	}
+  	ngOnInit() {
+  	}
+
+	/*
+		used to keep track of what item has which information
+	*/
+
+	toggleGroup(group) {
+      		if (this.isGroupShown(group)) {
+          		this.shownGroup = null;
+      		} else {
+          		this.shownGroup = group;
+      		}
+  	};
+	/*
+		keeps track of whether or not a group is hidden
+	*/
+  	isGroupShown(group) {
+      		return this.shownGroup == group;
+  	};
+>>>>>>> DetailPage
 }

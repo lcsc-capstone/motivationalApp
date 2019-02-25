@@ -10,11 +10,19 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 })
 export class AppComponent {
   public appPages = [
+<<<<<<< HEAD
     {
       title: 'Home',
       url: '/home',
       icon: 'home'
     },
+=======
+	{
+	        title: 'Home',
+	        url: '/home',
+	        icon: 'home'
+	},
+>>>>>>> DetailPage
 	{
 		title: 'Add New Motivation',
 		url: '/new-motivation',
@@ -25,11 +33,19 @@ export class AppComponent {
 		url: '/detail',
 		icon: 'checkmark-circle-outline'
 	},
+<<<<<<< HEAD
     {
       title: 'Calendar View',
       url: '/calerdar',
       icon: 'calendar'
     },
+=======
+    	{
+      		title: 'Calendar',
+      		url: '/calendar',
+      		icon: 'calendar'
+    	},
+>>>>>>> DetailPage
 	{
 		title: 'Settings',
 		url: '/setting',
