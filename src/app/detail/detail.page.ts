@@ -1,23 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-<<<<<<< HEAD
-=======
 import { NavController } from '@ionic/angular';
->>>>>>> DetailPage
-
 @Component({
   selector: 'app-detail',
   templateUrl: './detail.page.html',
   styleUrls: ['./detail.page.scss'],
 })
 export class DetailPage implements OnInit {
-<<<<<<< HEAD
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
-=======
+	
 	items: any; //The items array initiziler 
 	shownGroup = null; //Controlls the hidden / shown values for the div in html
 	constructor() { 
@@ -47,5 +36,4 @@ export class DetailPage implements OnInit {
   	isGroupShown(group) {
       		return this.shownGroup == group;
   	};
->>>>>>> DetailPage
 }
