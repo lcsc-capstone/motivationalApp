@@ -8,10 +8,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-<<<<<<< HEAD
 import { IonicStorageModule } from '@ionic/storage';
-=======
->>>>>>> DetailPage
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,10 +16,6 @@ import { IonicStorageModule } from '@ionic/storage';
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
-<<<<<<< HEAD
-	IonicStorageModule.forRoot(),
-=======
->>>>>>> DetailPage
     AppRoutingModule
   ],
   providers: [
