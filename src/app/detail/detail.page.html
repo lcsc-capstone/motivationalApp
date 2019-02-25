@@ -18,9 +18,12 @@
 			<!--> accordionLabel is being filled of items from item.header <!-->
 			<!--> A div panel that is populated with information for the accordion. Is shown and hidden via clicks on the ion item <!-->
 		</ion-item>
-		<div class="accordionPanel" *ngIf="isGroupShown(i)"> {{item.panel}}
-			<ion-button>I did it!!</ion-button>
-			<ion-button>Maybe Later...</ion-button>
-		</div>
+		<ion-item lines="none" *ngIf="isGroupShown(i)"> 
+			<ion-label class="accordionPanel"> 
+			{{item.panel}} 
+			<ion-button> Completed</ion-button>
+			<ion-button> Edit </ion-button>
+			</ion-label>
+		</ion-item>
 	</ion-list>
 </ion-content>
