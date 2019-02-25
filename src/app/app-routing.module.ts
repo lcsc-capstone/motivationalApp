@@ -14,7 +14,11 @@ const routes: Routes = [
   {
     path: 'list',
     loadChildren: './list/list.module#ListPageModule'
-  }
+  },  { path: 'new-motivation', loadChildren: './new-motivation/new-motivation.module#NewMotivationPageModule' },
+  { path: 'calerdar', loadChildren: './calerdar/calerdar.module#CalerdarPageModule' },
+  { path: 'detail', loadChildren: './detail/detail.module#DetailPageModule' },
+  { path: 'setting', loadChildren: './setting/setting.module#SettingPageModule' }
+
 ];
 
 @NgModule({
