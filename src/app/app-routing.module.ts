@@ -1,26 +1,3 @@
-<<<<<<< HEAD
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-
-const routes: Routes = [
-  {
-    path: '',
-    redirectTo: 'home',
-    pathMatch: 'full'
-  },
-  {
-    path: 'home',
-    loadChildren: './home/home.module#HomePageModule'
-  },
-  {
-    path: 'list',
-    loadChildren: './list/list.module#ListPageModule'
-  },  { path: 'new-motivation', loadChildren: './new-motivation/new-motivation.module#NewMotivationPageModule' },
-  { path: 'calerdar', loadChildren: './calerdar/calerdar.module#CalerdarPageModule' },
-  { path: 'detail', loadChildren: './detail/detail.module#DetailPageModule' },
-  { path: 'setting', loadChildren: './setting/setting.module#SettingPageModule' }
-
-];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
