@@ -2,7 +2,16 @@
 // http://ionicframework.com/docs/theming/
 
 /** Ionic CSS Variables **/
+
 :root {
+	.ion-color-trans{
+		--ion-color-base: #00000000;
+		--ion-color-base-rgb: 0, 0, 0, 0;
+		--ion-color-contrast: #00000000;
+		--ion-color-contrast-rgb: 0, 0, 0, 0;
+		--ion-color-shade: #00000000;
+		--ion-color-tint: #00000000;
+	}
   /** primary **/
   --ion-color-primary: #3880ff;
   --ion-color-primary-rgb: 56, 128, 255;
@@ -74,4 +83,12 @@
   --ion-color-light-contrast-rgb: 0, 0, 0;
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
+  
+  /** trans **/
+  --ion-color-trans: #00000000;
+  --ion-color-trans-rgb: 0, 0, 0, 0;
+  --ion-color-trans-contrast: #00000000;
+  --ion-color-trans-contrast-rgb: 0, 0, 0, 0;
+  --ion-color-trans-shade: #00000000;
+  --ion-color-trans-tint: #00000000;  
 }
