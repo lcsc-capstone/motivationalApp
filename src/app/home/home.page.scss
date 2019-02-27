@@ -6,7 +6,14 @@
 }
 ion-header {
 	z-index: 0;
-	background: trans;
+}
+
+ion-toolbar {
+
+	--background: transparent;
+
+	--ion-color-base: transparent !important;
+
 }
 .welcome-card ion-img {
   max-height: 35vh;

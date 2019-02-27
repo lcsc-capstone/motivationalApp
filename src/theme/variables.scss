@@ -5,12 +5,12 @@
 
 :root {
 	.ion-color-trans{
-		--ion-color-base: #00000000;
-		--ion-color-base-rgb: 0, 0, 0, 0;
-		--ion-color-contrast: #00000000;
-		--ion-color-contrast-rgb: 0, 0, 0, 0;
-		--ion-color-shade: #00000000;
-		--ion-color-tint: #00000000;
+		--ion-color-base: #00000000 !important;
+		--ion-color-base-rgb: 0, 0, 0, 0 !important;
+		--ion-color-contrast: #00000000 !important;
+		--ion-color-contrast-rgb: 0, 0, 0, 0 !important;
+		--ion-color-shade: #00000000 !important;
+		--ion-color-tint: #00000000 !important;
 	}
   /** primary **/
   --ion-color-primary: #3880ff;
