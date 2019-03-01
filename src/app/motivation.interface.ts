@@ -1,8 +1,9 @@
 export interface Motivation {
+	motivation_id: number;
 	name: string;
-	time: string;
+	remind: string;
 	firstDate: string;
-	indef: boolean;
+	indefToggle: boolean;
 	stopDate: string;
 	sound: string;
 }

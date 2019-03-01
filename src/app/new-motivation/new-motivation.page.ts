@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Storage } from '@ionic/storage';
+import { Motivation } from '../motivation.interface';
 
 @Component({
   selector: 'app-new-motivation',
@@ -9,6 +10,7 @@ import { Storage } from '@ionic/storage';
 
 
 export class NewMotivationPage implements OnInit {
+	public motivation: Motivation;
 	now: any; //Get Current date
 	nowNum: any; //Enabler for Current Date
 	nowHour: any; //get Current date an Hour from now
