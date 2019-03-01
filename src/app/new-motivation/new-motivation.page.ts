@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Storage } from '@ionic/storage';
+import { NativeRingtones } from '@ionic-native/native-ringtones/ngx';
 
 @Component({
   selector: 'app-new-motivation',
@@ -22,7 +23,7 @@ export class NewMotivationPage implements OnInit {
 	enableAlarm: boolean; //Enables last Date
 	alarmValue: boolean; //Value of Switch
 	lastRemind: any; //last Date/time for Reminder
-	constructor(private storage: Storage) { 
+	constructor(private storage: Storage, private ringtones: NativeRingtones) { 
 		this.alarmValue = true;
 		this.enableAlarm = false;
 		this.nowNum = new Date();
@@ -32,6 +33,7 @@ export class NewMotivationPage implements OnInit {
 		this.nowMonth =  new Date((((3600000 * 24) * this.getDaysinMonth()) + Date.now()) - (this.nowNum.getTimezoneOffset() * 60000));
 		this.now = new Date(Date.now() - (this.nowNum.getTimezoneOffset() * 60000));
 	}
+	
 	
 	ngOnInit() {}
 	stopDateToggle(){ 
