@@ -10,22 +10,34 @@
 </ion-header>
 
 <ion-content fullscreen> <!-- "fullscreen" makes header translucent, but also makes buttons disappear --> 
-	<ion-grid>
-		<ion-row>
-			<ion-col>
-				<div>
-					<ion-button shape="full">Last Motivation</ion-button>
-				</div>
-			</ion-col>
-			<ion-col>
-				<div>
-					<ion-button shape="full">Next Motivation</ion-button>
-				</div>
-			</ion-col>
-		</ion-row>
-	</ion-grid>
-	<ion-button color="success" shape="full">I did it!!!</ion-button>	
+	<ion-label id="MyClockDisplay" class="clock"></ion-label>
+	<script>
+		function showTime(){
+			var date = new Date();
+			var h = date.getHours(); // 0 - 23
+			var m = date.getMinutes(); // 0 - 59
+			var session = "AM";
+			
+			if(h == 0){
+				h = 12;
+			}
+			
+			if(h > 12){
+				h = h - 12;
+				session = "PM";
+			}
+			
+			h = (h < 10) ? "0" + h : h;
+			m = (m < 10) ? "0" + m : m;
+			
+			var time = h + ":" + m + " " + session;
+			document.getElementById("MyClockDisplay").innerText = time;
+			document.getElementById("MyClockDisplay").textContent = time;
+			
+			setTimeout(showTime, 1000);
+			
+		}
 
-	<ion-button color="danger" shape="full" >Maybe Later...</ion-button>
-
+		showTime();
+	</script>
 </ion-content>
