@@ -1,10 +1,10 @@
 <ion-header>
-  <ion-toolbar translucent = "true">
+  <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
 	<ion-buttons slot="end">
-		<ion-icon name="add" size="large" [routerLink] = "['/new-motivation']"></ion-icon>
+		<ion-icon name="add" slot= "icon-only" size="large" [routerLink] = "['/new-motivation']"></ion-icon>
 	</ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -24,8 +24,8 @@
 			</ion-col>
 		</ion-row>
 	</ion-grid>
-<ion-button color="success" shape="full">I did it!!!</ion-button>
+	<ion-button color="success" shape="full">I did it!!!</ion-button>	
 
-<ion-button color="danger" shape="full" >Maybe Later...</ion-button>
+	<ion-button color="danger" shape="full" >Maybe Later...</ion-button>
 
 </ion-content>

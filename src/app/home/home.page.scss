@@ -2,10 +2,11 @@
 ion-content {
 	--background: url("../../assets/Sunset.png") no-repeat center center fixed;
 	background-size: auto;
+
 	}
 
-ion-header {
-	z-index: 0;
+ion-header::after {
+	background-image: none;
 }
 ion-toolbar {
 	--background: transparent;
