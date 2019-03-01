@@ -19,13 +19,22 @@
 
 .accordionPanel { 
     background: #eee;
+    text-align: center;
+    word-wrap: break-word;
     margin-top: 5px; 
     padding: 0px;
     width: 100%;
     height: 100%;
   }
+ .plus_minus{
+ 	position: relative;
+ 	top: 10px;
+ }
   ion-button{
   	float: right;
   	border-radius: 0px;
   }
+  ion-icon {
+        font-size: 25px;
+    }
 

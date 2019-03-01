@@ -12,7 +12,7 @@ export class DetailPage implements OnInit {
 	constructor() { 
 		this.items = [
 		{ header: "This is a test", panel: "You are a test"},
-		{ header: "This is another test", panel: "You are great :)"}
+		{ header: "This is another test", panel: "You are great :)"},
 		];
 		
 	}
@@ -22,6 +22,7 @@ export class DetailPage implements OnInit {
 	/*
 		used to keep track of what item has which information
 	*/
+
 
 	toggleGroup(group) {
       		if (this.isGroupShown(group)) {
