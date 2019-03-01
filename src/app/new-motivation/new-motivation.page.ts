@@ -23,6 +23,7 @@ export class NewMotivationPage implements OnInit {
 	enableAlarm: boolean; //Enables last Date
 	alarmValue: boolean; //Value of Switch
 	lastRemind: any; //last Date/time for Reminder
+	ringtonesList: any;
 	constructor(private storage: Storage, private ringtones: NativeRingtones) { 
 		this.alarmValue = true;
 		this.enableAlarm = false;
