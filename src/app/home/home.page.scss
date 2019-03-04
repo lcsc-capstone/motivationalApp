@@ -1,9 +1,7 @@
 :host {
 	ion-content {
-		--background: url("../../assets/SunriseSunset1080x1920.png") no-repeat center center fixed;
+		--background: url("../../assets/Sunset.png") no-repeat center center fixed;
 		background-size: auto;
-		width: 100vw;
-		height: 55vh;
 		}
 }
 .welcome-card ion-img {
@@ -11,13 +9,4 @@
   overflow: hidden;
 }
 
-@media screen and (min-width: 1930px) {
-	:host{
-		ion-content{
-		background: url("../../assets/SunriseSunset1200x1980.png")no-repeat center center fixed;
-		background-size: auto;
-		width: 100vw;
-		height: 55vh;
-		}
-	}
-}
+
