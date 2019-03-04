@@ -33,6 +33,15 @@ export class NewMotivationPage implements OnInit {
 		this.nowWeek = new Date((((3600000 * 24) * 7) + Date.now()) - (this.nowNum.getTimezoneOffset() * 60000));
 		this.nowMonth =  new Date((((3600000 * 24) * this.getDaysinMonth()) + Date.now()) - (this.nowNum.getTimezoneOffset() * 60000));
 		this.now = new Date(Date.now() - (this.nowNum.getTimezoneOffset() * 60000));
+		this.ringtones.getRingtone()
+			.then(data=> {
+					this.ringtonesList = data; 
+					console.log(this.ringtonesList);
+				}
+			).catch(res=> {
+				console.log(res);
+			}
+			)
 	}
 	
 	

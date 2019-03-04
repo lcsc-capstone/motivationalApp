@@ -60,10 +60,11 @@
 			<ion-datetime display-format="MMM DD, YYYY" picker-format="MMM DD, YYYY" [disabled]="enableAlarm"  [(ngModel)]="stopDate" [value]="lastRemind"></ion-datetime>
 			<!--Dunno if "min" is working the way its supposed to. Needs testing when we submit forms--> <!--[min] = "getNow()"-->
 		</ion-item>
-		<ion-item>
+		<ion-item *ngIf = "ringtonesList.length > 0">
 			<ion-label id="sound">Reminder Sounds</ion-label> <!-- Selector for the sounds that will play for the reminder. Will be split into our Items and the Devices --> 
 			<ion-select placeholder="..." [(ngModel)]="sound">
 				<!-- Need to find a way to auto-populate this list with the sounds on their device, and our own sounds we are adding -->
+				<ion-select-option *ngFor = "let r of ringtonesList"></ion-select-option> 
 			</ion-select>
 		</ion-item>
 	</ion-list>
