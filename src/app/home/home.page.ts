@@ -26,11 +26,7 @@ export class HomePage implements OnInit{
 				}
 				session = "PM";
 			}
-			if(h < 10){ 
-				hs = "0" + h.toString();
-			} else {
-				hs = h.toString();
-			}
+			hs = h.toString();
 			if(m < 10){ 
 				ms = "0" + m.toString();
 			} else {
