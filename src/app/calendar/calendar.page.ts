@@ -36,6 +36,9 @@ export class CalendarPage implements OnInit {
 		for(var i = this.daysInThisMonth-(WeekDay-1); i <= this.daysInThisMonth; i++){ //Obtains the last few days of next month to keep calendar balanced
 			this.days.push(i);
 		}
+		for(var i = 31; i < this.days.length; i++){
+				this.days.pop();
+		}
 		console.log(this.days);
 	}
   	ngOnInit() {
