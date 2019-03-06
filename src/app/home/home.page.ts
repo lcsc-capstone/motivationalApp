@@ -20,8 +20,10 @@ export class HomePage implements OnInit{
 				h = 12;
 			}
 			
-			if(h > 12){
-				h = h - 12;
+			if(h >= 12){
+				if(h != 12){
+					h = h - 12;
+				}
 				session = "PM";
 			}
 			if(h < 10){ 
