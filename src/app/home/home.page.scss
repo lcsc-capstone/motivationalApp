@@ -20,8 +20,20 @@ ion-title {
 .float-right {
 	float: right;
 }
-ion-label {
-	padding: 25% 50%
+#MyClockDisplay {
+	font-size: 7em;
+	text-align: center;
+	color: #424242;
+	text-shadow: 3px 2px 3px black;
+	margin-top: 35px;
+	margin-bottom: 16px;
+}
+#Current {
+	font-size: 2em;
+	text-align: center;
+	color: #424242;
+	font-weight: bold;
+	margin-top: 16px;
 }
 .welcome-card ion-img {
   max-height: 35vh;
