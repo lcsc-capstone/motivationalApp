@@ -15,16 +15,15 @@ export class HomePage implements OnInit{
 			var session = "AM";
 			var hs;
 			var ms;
-			
-			if(h == 0){
-				h = 12;
-			}
-			
+
 			if(h >= 12){
 				if(h != 12){
 					h = h - 12;
 				}
 				session = "PM";
+			}
+			if(h == 0){
+				h = 12;
 			}
 			hs = h.toString();
 			if(m < 10){ 
