@@ -13,7 +13,7 @@ export class StorageService {
 	constructor(public storage: Storage) {}
 
 	getAllStoredMotivations(){
-		console.log(this.storage.get(STORAGE_KEY));
+		//console.log(this.storage.get(STORAGE_KEY));
 		return this.storage.get(STORAGE_KEY);
 	}
 
@@ -26,6 +26,20 @@ export class StorageService {
 				return this.storage.set(STORAGE_KEY, [motivation]);
 			}
 		});
+	}
+
+	removeMotivation( motivation: Motivation){
+		return this.getAllStoredMotivations().then(data => {
+			if(data){
+				let index = data.indexOf(motivation);
+				data.splice(index,1);
+				return this.storage.set(STORAGE_KEY, data);
+			}
+		});
+	}
+
+	clearStorage(){
+		return this.storage.clear();
 	}
 
 }
