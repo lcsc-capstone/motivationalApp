@@ -18,10 +18,6 @@ export class DetailPage implements OnInit {
 	}
   	ngOnInit() {
   	}
-  constructor() { }
-
-  ngOnInit() {
-  }
 
 	toggleGroup(group) {
       		if (this.isGroupShown(group)) {
