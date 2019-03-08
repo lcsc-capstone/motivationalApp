@@ -12,7 +12,7 @@
 		<ion-item>
 			<ion-label>Motivation Name: </ion-label> 
 			<!-- What do you think this does? It's the Name... For the Motivation... What did you expect? -->
-			<ion-input placeholder="..." inputmode="text" maxlength=20 required="true" [(ngModel)]="motivation.name" class="align-right" ></ion-input><!-- Tabs in the placeholder are they themselves placeholders, until proper SCC in implemented -->
+			<ion-input placeholder="..." inputmode="text" maxlength=20 required="true" [(ngModel)]="name" class="align-right" ></ion-input><!-- Tabs in the placeholder are they themselves placeholders, until proper SCC in implemented -->
 		</ion-item>
 		<ion-item>
 			<ion-label>Motivation Types</ion-label>
@@ -33,7 +33,7 @@
 		</ion-item>
 		<ion-item>
 			<ion-label>When to Remind</ion-label>
-			<ion-select placeholder = "Select One..." name="time" [ngModel]="motivation.remind" id="remind">
+			<ion-select placeholder = "Select One..." name="time" [(ngModel)]="remind" id="remind">
 				<ion-select-option value="month">Monthly</ion-select-option>
 				<ion-select-option value="week">Weekly</ion-select-option>
 				<ion-select-option value="day">Daily</ion-select-option>
@@ -41,33 +41,32 @@
 				<ion-select-option value="bihour">Every 2 Hours</ion-select-option>
 				<ion-select-option value="hour">Hourly</ion-select-option>
 				<ion-select-option value="joke">Constant</ion-select-option>
-				<!-- Hourly, Bi-hourly, & Tri-hourly Shouldn't remind people during sleep time. Should be an option in the settings -->
 				<ion-select-option value="once">Only Once</ion-select-option>
 			</ion-select>
 		</ion-item>
 		<ion-item>
 			<ion-label>First Reminder</ion-label> <!-- Time for the First, or only, Reminder -->
-			<ion-datetime display-format="MMM DD, YYYY HH:mm" picker-format= "MMM DD, YYYY HH:mm"  [(ngModel)]="motivation.firstDate" [value]="firstRemind"></ion-datetime>
+			<ion-datetime display-format="MMM DD, YYYY HH:mm" picker-format= "MMM DD, YYYY HH:mm"  [(ngModel)]="firstDate" [value]="firstRemind"></ion-datetime>
 			<!--Dunno if "min" is working the way its supposed to. Needs testing when we submit forms--> <!--[min] = "getNow()"-->
 		</ion-item>
 		<ion-item>
 			<ion-label>Remind Indefinitely?</ion-label> <!-- Turns on and off the "Stop Date" Item -->
-			<ion-toggle checked="true" (ionChange)="stopDateToggle()" [(ngModel)]="motivation.indefToggle" [checked] = "alarmValue"></ion-toggle>
+			<ion-toggle checked="true" (ionChange)="stopDateToggle()" [(ngModel)]="indefToggle" [checked] = "alarmValue"></ion-toggle>
 			<!-- In the database, we should have a way to N/A or void our "stop date" column -->
 		</ion-item>
 		<ion-item>
 			<ion-label>Stop Date</ion-label> <!-- Date to Stop Reminders --> 
-			<ion-datetime display-format="MMM DD, YYYY" picker-format="MMM DD, YYYY" [disabled]="enableAlarm"  [(ngModel)]="motivation.stopDate" [value]="lastRemind"></ion-datetime>
+			<ion-datetime display-format="MMM DD, YYYY" picker-format="MMM DD, YYYY" [disabled]="enableAlarm"  [(ngModel)]="stopDate" [value]="lastRemind"></ion-datetime>
 			<!--Dunno if "min" is working the way its supposed to. Needs testing when we submit forms--> <!--[min] = "getNow()"-->
 		</ion-item>
 		<ion-item>
 			<ion-label id="sound">Reminder Sounds</ion-label> <!-- Selector for the sounds that will play for the reminder. Will be split into our Items and the Devices --> 
-			<ion-select placeholder="..." [(ngModel)]="motivation.sound">
+			<ion-select placeholder="..." [(ngModel)]="sound">
 				<!-- Need to find a way to auto-populate this list with the sounds on their device, and our own sounds we are adding -->
 			</ion-select>
 		</ion-item>
 	</ion-list>
-	<ion-button strong = true (click) = "fillForm()">Get Motivated!</ion-button>
+	<ion-button strong = true (click) = "addMotivation()">Get Motivated!</ion-button>
 </ion-content>
 <!-- Form Data will be
 String name - Name of the Reminder

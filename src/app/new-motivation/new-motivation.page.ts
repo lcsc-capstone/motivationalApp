@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { Motivation } from '../motivation.interface';
+import { StorageService } from '../storage.service';
 
 @Component({
   selector: 'app-new-motivation',
@@ -24,7 +25,16 @@ export class NewMotivationPage implements OnInit {
 	enableAlarm: boolean; //Enables last Date
 	alarmValue: boolean; //Value of Switch
 	lastRemind: any; //last Date/time for Reminder
-	constructor(private storage: Storage) { 
+	constructor(private storage: StorageService) {
+		this.motivation = {
+			motivation_id: 0,
+			name: '',
+			remind: '',
+			firstDate: '',
+			indefToggle: 0,
+			stopDate: '',
+			sound: '',
+		}
 		this.alarmValue = true;
 		this.enableAlarm = false;
 		this.nowNum = new Date();
@@ -119,10 +129,20 @@ export class NewMotivationPage implements OnInit {
 	daysInMonth(month,year) {
 		return new Date(year, month, 0).getDate();
 	}
-	fillForm(){
-		console.log(this.name + ", " + this.remind + ", " + this.firstRemind + ", " + this.alarmValue + ", " + this.lastRemind);
+	addMotivation(){
+		var temp = Math.floor(Math.random() * 100000000000000000000);
+		this.motivation.motivation_id = temp;
+		this.motivation.name = this.name;
+		this.motivation.remind = this.remind;
+		this.motivation.firstDate = this.firstRemind;
+		this.motivation.indefToggle = this.alarmValue;
+		this.motivation.stopDate = this.lastRemind;
+		this.motivation.sound = ''; //till we get sound working, temp value of nothing. (Matt)
+		
+		this.storage.addMotivation(this.motivation);
+		
 		//Instability Fixed! (James)
-		this.storage.set('name', this.name).then(()=> {
+		/*this.storage.set('name', this.name).then(()=> {
 			this.storage.get('name').then((val) => {
 				console.log('Name Set ', val);
 			});
@@ -146,12 +166,12 @@ export class NewMotivationPage implements OnInit {
 			this.storage.get('lastRemind').then((val) => {
 				console.log('lastRemind Set ', val);
 			});
-		});
+		});(Commented out due to rewriting for storage. (Matt)*/
 		this.name = "";
 		this.selected = null;
 		this.remind = "";
-		this.firstRemind = undefined;
+		this.firstRemind = '';
 		this.alarmValue = true;
-		this.lastRemind = undefined;
+		this.lastRemind = '';
 	}
 	}
