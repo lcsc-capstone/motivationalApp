@@ -38,6 +38,17 @@ export class StorageService {
 		});
 	}
 
+	findMotivation(motivationid somehow?){
+		return this.getAllStoredMotivations().then(data => {
+			if(data){
+				for(var i = 0; i < data.length; i++){
+					if(motivid = data[i].motivation_id)
+					return data[i];
+				}
+			}
+		})
+	}
+
 	clearStorage(){
 		return this.storage.clear();
 	}
