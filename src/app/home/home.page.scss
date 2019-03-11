@@ -21,7 +21,7 @@ ion-title {
 	float: right;
 }
 #MyClockDisplay {
-	font-size: 7em;
+	font-size: 20vw;
 	text-align: center;
 	color: #424242;
 	text-shadow: 3px 2px 3px black;
@@ -29,18 +29,41 @@ ion-title {
 	margin-bottom: 16px;
 }
 #Current {
-	font-size: 2em;
+	font-size: 6.25vw;
 	text-align: center;
 	color: #424242;
 	font-weight: bold;
 	margin-top: 16px;
 }
 #Clear {
-	font-size: 1.5em;
+	font-size: 3.75vw;
 	text-align: center;
 	color: #424242;
 	font-weight: bold;
 	margin-top: 16px;
+}
+#No {
+	font-size: 3.75vw;
+	text-align: center;
+	color: #424242;
+	font-weight: bold;
+	margin-top: 16px;
+}
+div {
+	font-size: 3vw;
+}
+ion-grid {
+	background-color: #ead0d077;
+	margin-bottom: 3em;
+}
+ion-button {
+	--color: #000000 !important;
+}
+#Date, #DidIt, #Later {
+	float: right;
+}
+#Time {
+	margin-top: 2vw;
 }
 .welcome-card ion-img {
   max-height: 35vh;

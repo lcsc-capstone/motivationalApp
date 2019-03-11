@@ -15,9 +15,85 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content fullscreen>
+<ion-content fullscreen padding>
 	<p id="MyClockDisplay">Test if Works</p>
 	<p id="Current">Most Current Motivations</p>
-	<p id="Clear">No Pending Motivations! Have a good day!</p> <!-- This should disappear when are no pending motivations, and change when there are no motivations -->
+	<!--<p id="Clear">No Pending Motivations! Have a good day!</p>  This should appear when there are no pending motivations-->
+	<!-- <p id="No">You have no Motivations Currently... Lets make some!</p> This should appear when there are no motivations in the database-->
 	<!-- Insert boxes for 3 triggered motivations -->
+	<ion-grid>
+		<ion-row>
+			<ion-col>
+				<div id="Name">
+					Name
+				</div>
+			</ion-col>
+			<ion-col id="Date">
+				<div id="Date">
+					MM/DD/YYYY
+				</div>
+			</ion-col>
+		</ion-row>
+		<ion-row>
+			<ion-col>
+				<div id="Time">
+					HH:MM
+				</div>
+			</ion-col>
+			<ion-col>
+				<ion-button id="Later" color= "warning">Maybe Later...</ion-button>
+				<ion-button id="DidIt" color= "warning">I Did it!</ion-button>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
+	<ion-grid>
+		<ion-row>
+			<ion-col>
+				<div id="Name">
+					Name
+				</div>
+			</ion-col>
+			<ion-col id="Date">
+				<div id="Date">
+					MM/DD/YYYY
+				</div>
+			</ion-col>
+		</ion-row>
+		<ion-row>
+			<ion-col>
+				<div id="Time">
+					HH:MM
+				</div>
+			</ion-col>
+			<ion-col>
+				<ion-button id="Later" color= "warning">Maybe Later...</ion-button>
+				<ion-button id="DidIt" color= "warning">I Did it!</ion-button>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
+	<ion-grid>
+		<ion-row>
+			<ion-col>
+				<div id="Name">
+					Name
+				</div>
+			</ion-col>
+			<ion-col id="Date">
+				<div id="Date">
+					MM/DD/YYYY
+				</div>
+			</ion-col>
+		</ion-row>
+		<ion-row>
+			<ion-col>
+				<div id="Time">
+					HH:MM
+				</div>
+			</ion-col>
+			<ion-col>
+				<ion-button id="Later" color= "warning">Maybe Later...</ion-button>
+				<ion-button id="DidIt" color= "warning">I Did it!</ion-button>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
 </ion-content>
