@@ -7,7 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CalendarPage implements OnInit {
 	days: any;
-	LastWeekDay: any;
+	previous_Days: any;
+	next_Days: any;
 	daysInThisMonth: any;
 	daysInLastMonth: any;
 	daysInNextMonth: any;
@@ -26,36 +27,37 @@ export class CalendarPage implements OnInit {
 		this.daysInLastMonth = new Date(this.CurrentYear,this.CurrentMonth-1,0).getDate();
 		this.daysInNextMonth = new Date(this.CurrentYear,this.CurrentMonth+1,0).getDate();
 		this.Month = ["January","February","March","April","May","June","July","August","September","October","November","December"];
-		this.WeekDay = new Date(this.CurrentYear,this.CurrentMonth,1).getDay();
+		this.WeekDay = new Date(this.CalendarDate.getFullYear(),this.CalendarDate.getMonth(),1).getDay();
 		this.days = new Array();
+		this.previous_Days = new Array();
+		this.next_Days = new Array();
 		this.getPreviousDaysOfMonth();
 		this.getDaysOfMonth();
 		this.getPreviousDaysOfNextMonth();
-		this.MonthCheck();
 		console.log(this.days);
 	}
   	ngOnInit() {
   	}
-  	//potential functions for cleaner looking code? Eventually?
   	getPreviousDaysOfMonth(){
-  		for(var i = this.daysInLastMonth-(this.WeekDay-1); i <= this.daysInLastMonth; i++){ //Obtains the last few days of last month to keep the calendar balanced
-			this.days.push(i);
+  		var previous_Num_Days = new Date(this.CalendarDate.getFullYear(),this.CalendarDate.getMonth(),0).getDate();
+  		for(var i = previous_Num_Days-(this.WeekDay-1); i <= this.daysInLastMonth; i++){ //Obtains the last few days of last month to keep the calendar balanced
+			this.previous_Days.push(i);
+
 		}
+		console.log(this.previous_Days);
   	}
   	getDaysOfMonth(){
   	for(var i = 1; i <= this.daysInThisMonth; i++){ //Populates the calendar with all the current days of the month
   			this.days.push(i);
   		}
   	}
-
   getPreviousDaysOfNextMonth(){
-  	for(var i = this.daysInThisMonth-(this.WeekDay-1); i <= this.daysInThisMonth; i++){ //Obtains the last few days of next month to keep calendar balanced
-			this.days.push(i);
-		}
+  	var lastDayThisMonth = new Date(this.CalendarDate.getFullYear(), this.CalendarDate.getMonth()+1, 0).getDay();
+  	console.log(lastDayThisMonth);
+  	for (var i = 0; i < (6-lastDayThisMonth); i++) {
+    	this.next_Days.push(i+1);
   }
-  MonthCheck(){
-  	for(var i = 31; i < this.days.length; i++){
-				this.days.pop();
-		}
+	console.log(this.next_Days);
   }
+
 }
