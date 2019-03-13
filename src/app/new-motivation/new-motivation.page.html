@@ -33,7 +33,7 @@
 		</ion-item>
 		<ion-item>
 			<ion-label>When to Remind</ion-label>
-			<ion-select placeholder = "Select One..." name="time" [ngModel]="remind" id="remind">
+			<ion-select placeholder = "Select One..." name="time" [(ngModel)]="remind" id="remind">
 				<ion-select-option value="month">Monthly</ion-select-option>
 				<ion-select-option value="week">Weekly</ion-select-option>
 				<ion-select-option value="day">Daily</ion-select-option>
@@ -41,7 +41,6 @@
 				<ion-select-option value="bihour">Every 2 Hours</ion-select-option>
 				<ion-select-option value="hour">Hourly</ion-select-option>
 				<ion-select-option value="joke">Constant</ion-select-option>
-				<!-- Hourly, Bi-hourly, & Tri-hourly Shouldn't remind people during sleep time. Should be an option in the settings -->
 				<ion-select-option value="once">Only Once</ion-select-option>
 			</ion-select>
 		</ion-item>
@@ -67,7 +66,7 @@
 			</ion-select>
 		</ion-item>
 	</ion-list>
-	<ion-button strong = true (click) = "fillForm()">Get Motivated!</ion-button>
+	<ion-button strong = true (click) = "addMotivation()">Get Motivated!</ion-button>
 </ion-content>
 <!-- Form Data will be
 String name - Name of the Reminder
