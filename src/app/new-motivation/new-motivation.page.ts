@@ -31,32 +31,32 @@ export class NewMotivationPage implements OnInit {
 			name: '',
 			remind: '',
 			firstDate: '',
-			indefToggle: 0,
+			indefToggle: false,
 			stopDate: '',
 			sound: '',
 		}
 		this.alarmValue = true;
 		this.enableAlarm = false;
 		this.nowNum = new Date();
-		this.nowHour = new Date((3600000 + Date.now()) - (this.nowNum.getTimezoneOffset() * 60000)); 
-		this.nowDay = new Date(((3600000 * 24) + Date.now()) - (this.nowNum.getTimezoneOffset() * 60000)); 
+		this.nowHour = new Date((3600000 + Date.now()) - (this.nowNum.getTimezoneOffset() * 60000));
+		this.nowDay = new Date(((3600000 * 24) + Date.now()) - (this.nowNum.getTimezoneOffset() * 60000));
 		this.nowWeek = new Date((((3600000 * 24) * 7) + Date.now()) - (this.nowNum.getTimezoneOffset() * 60000));
 		this.nowMonth =  new Date((((3600000 * 24) * this.getDaysinMonth()) + Date.now()) - (this.nowNum.getTimezoneOffset() * 60000));
 		this.now = new Date(Date.now() - (this.nowNum.getTimezoneOffset() * 60000));
 	}
-	
+
 	ngOnInit() {}
-	stopDateToggle(){ 
+	stopDateToggle(){
 		this.enableAlarm = !this.enableAlarm;
 	}
 	getNow(){
 		var x = new Date(Date.now() - (this.nowNum.getTimezoneOffset() * 60000))
-		return x.toISOString();	
+		return x.toISOString();
 	}
 	setDefaults(){
 		var e = this.selected;
 		switch(e){
-			case "water":				
+			case "water":
 				this.name = "Drink Water";
 				this.remind = "hour";
 				this.firstRemind = this.nowHour.toISOString();
@@ -118,7 +118,7 @@ export class NewMotivationPage implements OnInit {
 				this.lastRemind = this.nowMonth.toISOString();
 				break;
 		}
-				
+
 		}
 	getDaysinMonth() {
 		var today = new Date();
@@ -138,9 +138,9 @@ export class NewMotivationPage implements OnInit {
 		this.motivation.indefToggle = this.alarmValue;
 		this.motivation.stopDate = this.lastRemind;
 		this.motivation.sound = ''; //till we get sound working, temp value of nothing. (Matt)
-		
+
 		this.storage.addMotivation(this.motivation);
-		
+
 		//Instability Fixed! (James)
 		/*this.storage.set('name', this.name).then(()=> {
 			this.storage.get('name').then((val) => {
