@@ -38,7 +38,7 @@ export class StorageService {
 		});
 	}
 
-	findMotivation(motivationid somehow?){
+	findMotivation( motivid: Number ){
 		return this.getAllStoredMotivations().then(data => {
 			if(data){
 				for(var i = 0; i < data.length; i++){
@@ -46,7 +46,7 @@ export class StorageService {
 					return data[i];
 				}
 			}
-		})
+		});
 	}
 
 	clearStorage(){
