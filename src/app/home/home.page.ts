@@ -1,5 +1,6 @@
 import { Component,  OnInit } from '@angular/core';
 import {MenuController} from '@ionic/angular';
+import { StorageService } from '../storage.service';
 
 @Component({
   selector: 'app-home',
@@ -7,7 +8,10 @@ import {MenuController} from '@ionic/angular';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit{
-	constructor(public menuCtrl: MenuController) {}
+	motivations: any; //Used to grab the motivations
+	constructor(public menuCtrl: MenuController, public getStore: StorageService) {
+		this.motivations = getStore.getAllStoredMotivations();
+	}
 	toggleMenu(){
 		this.menuCtrl.toggle();
 	}
