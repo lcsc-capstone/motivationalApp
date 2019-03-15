@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+  <ion-buttons slot="start">
+     <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+	<ion-buttons slot="end">
+		<ion-icon name="add" size="large" [routerLink] = "['/new-motivation']"></ion-icon>
+	</ion-buttons>
+    <ion-title>Calendar</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content padding>
+<div class="calendar-body">
+	<ion-grid>
+		<ion-row>
+			<ion-col>Sun</ion-col>
+			<ion-col>Mon</ion-col>
+			<ion-col>Tue</ion-col>
+			<ion-col>Wed</ion-col>
+			<ion-col>Thur</ion-col>
+			<ion-col>Fri</ion-col>
+			<ion-col>Sat</ion-col>
+		</ion-row>
+		<ion-row>
+			<ion-col *ngFor="let days of days" class="month">{{days}} </ion-col>
+		</ion-row>
+	</ion-grid>
+</div>
+</ion-content>

@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Storage } from '@ionic/storage';
+
 import { NativeRingtones } from '@ionic-native/native-ringtones/ngx';
+
+import { Motivation } from '../motivation.interface';
+import { StorageService } from '../storage.service';
+
 
 @Component({
   selector: 'app-new-motivation',
@@ -10,6 +15,7 @@ import { NativeRingtones } from '@ionic-native/native-ringtones/ngx';
 
 
 export class NewMotivationPage implements OnInit {
+	public motivation: Motivation;
 	now: any; //Get Current date
 	nowNum: any; //Enabler for Current Date
 	nowHour: any; //get Current date an Hour from now
@@ -24,12 +30,21 @@ export class NewMotivationPage implements OnInit {
 	alarmValue: boolean; //Value of Switch
 	lastRemind: any; //last Date/time for Reminder
 	ringtonesList: any;
-	constructor(private storage: Storage, private ringtones: NativeRingtones) { 
+	constructor(private storage: StorageService, private ringtones: NativeRingtones) { 
+		this.motivation = {
+			motivation_id: 0,
+			name: '',
+			remind: '',
+			firstDate: '',
+			indefToggle: false,
+			stopDate: '',
+			sound: '',
+		}
 		this.alarmValue = true;
 		this.enableAlarm = false;
 		this.nowNum = new Date();
-		this.nowHour = new Date((3600000 + Date.now()) - (this.nowNum.getTimezoneOffset() * 60000)); 
-		this.nowDay = new Date(((3600000 * 24) + Date.now()) - (this.nowNum.getTimezoneOffset() * 60000)); 
+		this.nowHour = new Date((3600000 + Date.now()) - (this.nowNum.getTimezoneOffset() * 60000));
+		this.nowDay = new Date(((3600000 * 24) + Date.now()) - (this.nowNum.getTimezoneOffset() * 60000));
 		this.nowWeek = new Date((((3600000 * 24) * 7) + Date.now()) - (this.nowNum.getTimezoneOffset() * 60000));
 		this.nowMonth =  new Date((((3600000 * 24) * this.getDaysinMonth()) + Date.now()) - (this.nowNum.getTimezoneOffset() * 60000));
 		this.now = new Date(Date.now() - (this.nowNum.getTimezoneOffset() * 60000));
@@ -43,20 +58,19 @@ export class NewMotivationPage implements OnInit {
 			}
 			)
 	}
-	
-	
+
 	ngOnInit() {}
-	stopDateToggle(){ 
+	stopDateToggle(){
 		this.enableAlarm = !this.enableAlarm;
 	}
 	getNow(){
 		var x = new Date(Date.now() - (this.nowNum.getTimezoneOffset() * 60000))
-		return x.toISOString();	
+		return x.toISOString();
 	}
 	setDefaults(){
 		var e = this.selected;
 		switch(e){
-			case "water":				
+			case "water":
 				this.name = "Drink Water";
 				this.remind = "hour";
 				this.firstRemind = this.nowHour.toISOString();
@@ -118,7 +132,7 @@ export class NewMotivationPage implements OnInit {
 				this.lastRemind = this.nowMonth.toISOString();
 				break;
 		}
-				
+
 		}
 	getDaysinMonth() {
 		var today = new Date();
@@ -129,10 +143,20 @@ export class NewMotivationPage implements OnInit {
 	daysInMonth(month,year) {
 		return new Date(year, month, 0).getDate();
 	}
-	fillForm(){
-		console.log(this.name + ", " + this.remind + ", " + this.firstRemind + ", " + this.alarmValue + ", " + this.lastRemind);
+	addMotivation(){
+		var temp = Math.floor(Math.random() * 100000000000000000000);
+		this.motivation.motivation_id = temp;
+		this.motivation.name = this.name;
+		this.motivation.remind = this.remind;
+		this.motivation.firstDate = this.firstRemind;
+		this.motivation.indefToggle = this.alarmValue;
+		this.motivation.stopDate = this.lastRemind;
+		this.motivation.sound = ''; //till we get sound working, temp value of nothing. (Matt)
+
+		this.storage.addMotivation(this.motivation);
+
 		//Instability Fixed! (James)
-		this.storage.set('name', this.name).then(()=> {
+		/*this.storage.set('name', this.name).then(()=> {
 			this.storage.get('name').then((val) => {
 				console.log('Name Set ', val);
 			});
@@ -156,12 +180,12 @@ export class NewMotivationPage implements OnInit {
 			this.storage.get('lastRemind').then((val) => {
 				console.log('lastRemind Set ', val);
 			});
-		});
+		});(Commented out due to rewriting for storage. (Matt)*/
 		this.name = "";
 		this.selected = null;
 		this.remind = "";
-		this.firstRemind = undefined;
+		this.firstRemind = '';
 		this.alarmValue = true;
-		this.lastRemind = undefined;
+		this.lastRemind = '';
 	}
 	}

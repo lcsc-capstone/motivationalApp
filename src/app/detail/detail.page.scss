@@ -1,0 +1,42 @@
+
+.accordion{
+	padding: 0px;
+	margin-bottom: 17px;
+	.active{
+		min-height: 5px;
+	}
+}
+.accordionHeader{
+	background: #eee;
+	width: 100%;
+	height: 100%;
+}
+.accordionLabel{
+	display:block;
+	float: left;
+	background: #eee;
+	height: 100%;
+  padding: 5px;
+}
+
+.accordionPanel { 
+    background: #eee;
+    text-align: center;
+    word-wrap: break-word;
+    margin-top: 5px; 
+    padding: 0px;
+    width: 100%;
+    height: 100%;
+  }
+ .plus_minus{
+ 	position: relative;
+ 	top: 10px;
+ }
+  ion-button{
+  	float: right;
+  	border-radius: 0px;
+  }
+  ion-icon {
+        font-size: 25px;
+    }
+
