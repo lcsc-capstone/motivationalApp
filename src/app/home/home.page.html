@@ -1,15 +1,18 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
+     <!-- <ion-menu-button color= "newWhite"></ion-menu-button> -->
+	 <ion-button color="newWhite" (click)="toggleMenu()">
+		<ion-icon name="menu" slot="icon-only"></ion-icon>
+	 </ion-button>
     </ion-buttons>
 	<ion-buttons slot="end">
-		<ion-icon name="add" slot= "icon-only" size="large" [routerLink] = "['/new-motivation']"></ion-icon>
+		<ion-icon name="add" slot= "icon-only" size="large" color= "newWhite" [routerLink] = "['/new-motivation']"></ion-icon>
 	</ion-buttons>
-	<ion-title>
+	<ion-title color= "newWhite">
 		Menu
     </ion-title>
-	<ion-title class = "float-right" [routerLink] = "['/new-motivation']">
+	<ion-title class = "float-right" color= "newWhite" [routerLink] = "['/new-motivation']">
 		New Motivation
 	</ion-title>
   </ion-toolbar>
@@ -42,7 +45,7 @@
 			</ion-col>
 			<ion-col>
 				<ion-button id="Later" color= "warning">Maybe Later...</ion-button>
-				<ion-button id="DidIt" color= "warning">I Did it!</ion-button>
+				<ion-button id="DidIt" color= "newGreen">I Did it!</ion-button>
 			</ion-col>
 		</ion-row>
 	</ion-grid>
@@ -67,7 +70,7 @@
 			</ion-col>
 			<ion-col>
 				<ion-button id="Later" color= "warning">Maybe Later...</ion-button>
-				<ion-button id="DidIt" color= "warning">I Did it!</ion-button>
+				<ion-button id="DidIt" color= "newGreen">I Did it!</ion-button>
 			</ion-col>
 		</ion-row>
 	</ion-grid>
@@ -92,7 +95,7 @@
 			</ion-col>
 			<ion-col>
 				<ion-button id="Later" color= "warning">Maybe Later...</ion-button>
-				<ion-button id="DidIt" color= "warning">I Did it!</ion-button>
+				<ion-button id="DidIt" color= "newGreen">I Did it!</ion-button>
 			</ion-col>
 		</ion-row>
 	</ion-grid>

@@ -12,6 +12,9 @@ ion-toolbar {
 	--background: transparent;
 	--ion-color-base: transparent !important;
 }
+#menu {
+	--color: "newWhite"
+}
 ion-title {
 	padding-top: 4px;
 	font-size: 1em;
@@ -23,7 +26,7 @@ ion-title {
 #MyClockDisplay {
 	font-size: 20vw;
 	text-align: center;
-	color: #424242;
+	color: #dcdcdc;
 	text-shadow: 3px 2px 3px black;
 	margin-top: 35px;
 	margin-bottom: 16px;
@@ -31,7 +34,8 @@ ion-title {
 #Current {
 	font-size: 6.25vw;
 	text-align: center;
-	color: #424242;
+	color: #dcdcdc;
+	text-shadow: 3px 2px 3px black;
 	font-weight: bold;
 	margin-top: 16px;
 }
