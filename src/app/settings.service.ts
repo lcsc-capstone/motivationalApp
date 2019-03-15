@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-
+import { StorageService } from '../storage.service'
+import { Motivation } from '../motivation.interface'
 @Injectable({
   providedIn: 'root'
 })
@@ -18,6 +19,10 @@ export class SettingsService {
 	}
 	switch_nukedata(){
 		this.nukedata = !this.nukedata;
-		console.log(this.nukedata);
+		console.log(this.nukedata)();
+		if (nukedata == true){
+			StorageService.clearStorage();
+			this.nukedata = !this.nukedata;
+		}
 	}
 }
