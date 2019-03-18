@@ -9,14 +9,19 @@ import { StorageService } from '../storage.service';
 })
 export class HomePage implements OnInit{
 	motivations: any; //Used to grab the motivations
+	active: boolean; //Used to change Background
+	backgroundPic: String;
 	constructor(public menuCtrl: MenuController, public getStore: StorageService) {
 		this.motivations = getStore.getAllStoredMotivations();
 	}
 	toggleMenu(){
 		this.menuCtrl.toggle();
 	}
+	
 	ngOnInit() {this.showTime();}
 	showTime(){
+			this.active = true;
+			this.backgroundPic = "./assets/Sunset.png";
 			var date = new Date();
 			var h = date.getHours(); // 0 - 23
 			var m = date.getMinutes(); // 0 - 59
@@ -40,11 +45,44 @@ export class HomePage implements OnInit{
 				ms = m.toString();
 			}			
 			var time = hs + ":" + ms + " " + session;
-			document.getElementById("MyClockDisplay").innerText = time;
+			//document.getElementById("MyClockDisplay").innerText = time; Seems to cause Errors
 			document.getElementById("MyClockDisplay").textContent = time;
-			
+			if ((h >= 8 && session == "PM")||(h <= 8 && session == "AM")){
+				this.active = false; 
+				this.backgroundPic = "./assets/Night.png";
+			}
 			setInterval(this.showTime, 1000);
 			
 		}
-
+	showTimeMil(){
+		this.active = true;
+		this.backgroundPic = "./assets/Sunset.png";
+		var date = new Date();
+		var h = date.getHours(); // 0 - 23
+		var m = date.getMinutes(); // 0 - 59
+		var hs;
+		var ms;
+		hs = h.toString();
+		if(m < 10){ 
+			ms = "0" + m.toString();
+		} else {
+			ms = m.toString();
+		}			
+		var time = hs + ":" + ms;
+		//document.getElementById("MyClockDisplay").innerText = time; Seems to cause Errors
+		document.getElementById("MyClockDisplay").textContent = time;
+		if ((h >= 20)||(h <= 8)){
+			this.active = false; 
+			this.backgroundPic = "./assets/Night.png";
+		}
+		setInterval(this.showTime, 1000);
+			
+	}
+	getBackground(){
+			if (this.active != false){
+				return "Night";
+			} else {
+				return "Day";
+			}
+	}
 }

@@ -18,84 +18,84 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content fullscreen padding>
+<ion-content fullscreen padding [ngClass] = "getBackground()">
 	<p id="MyClockDisplay">Test if Works</p>
 	<p id="Current">Most Current Motivations</p>
 	<!--<p id="Clear">No Pending Motivations! Have a good day!</p>  This should appear when there are no pending motivations-->
 	<!-- <p id="No">You have no Motivations Currently... Lets make some!</p> This should appear when there are no motivations in the database-->
 	<!-- Insert boxes for 3 triggered motivations -->
-	<ion-grid>
+	<ion-grid [ngClass] = "getBackground()">
 		<ion-row>
 			<ion-col>
-				<div id="Name">
+				<div id="Name" [ngClass] = "getBackground()">
 					Name
 				</div>
 			</ion-col>
 			<ion-col id="Date">
-				<div id="Date">
+				<div id="Date" [ngClass] = "getBackground()">
 					MM/DD/YYYY
 				</div>
 			</ion-col>
 		</ion-row>
 		<ion-row>
 			<ion-col>
-				<div id="Time">
+				<div id="Time" [ngClass] = "getBackground()">
 					HH:MM
 				</div>
 			</ion-col>
 			<ion-col>
-				<ion-button id="Later" color= "warning">Maybe Later...</ion-button>
-				<ion-button id="DidIt" color= "newGreen">I Did it!</ion-button>
+				<ion-button id="Later" color= "warning" size="small">Maybe Later...</ion-button>
+				<ion-button id="DidIt" color= "newGreen" size="small">I Did it!</ion-button>
 			</ion-col>
 		</ion-row>
 	</ion-grid>
-	<ion-grid>
+	<ion-grid [ngClass] = "getBackground()">
 		<ion-row>
 			<ion-col>
-				<div id="Name">
+				<div id="Name" [ngClass] = "getBackground()">
 					Name
 				</div>
 			</ion-col>
 			<ion-col id="Date">
-				<div id="Date">
+				<div id="Date" [ngClass] = "getBackground()">
 					MM/DD/YYYY
 				</div>
 			</ion-col>
 		</ion-row>
 		<ion-row>
 			<ion-col>
-				<div id="Time">
+				<div id="Time" [ngClass] = "getBackground()">
 					HH:MM
 				</div>
 			</ion-col>
 			<ion-col>
-				<ion-button id="Later" color= "warning">Maybe Later...</ion-button>
-				<ion-button id="DidIt" color= "newGreen">I Did it!</ion-button>
+				<ion-button id="Later" color= "warning" size="small">Maybe Later...</ion-button>
+				<ion-button id="DidIt" color= "newGreen" size="small">I Did it!</ion-button>
 			</ion-col>
 		</ion-row>
 	</ion-grid>
-	<ion-grid>
+	<ion-grid [ngClass] = "getBackground()">
 		<ion-row>
 			<ion-col>
-				<div id="Name">
+				<div id="Name" [ngClass] = "getBackground()">
 					Name
 				</div>
 			</ion-col>
 			<ion-col id="Date">
-				<div id="Date">
+				<div id="Date" [ngClass] = "getBackground()">
 					MM/DD/YYYY
 				</div>
 			</ion-col>
 		</ion-row>
 		<ion-row>
 			<ion-col>
-				<div id="Time">
+				<div id="Time" [ngClass] = "getBackground()">
 					HH:MM
 				</div>
 			</ion-col>
 			<ion-col>
-				<ion-button id="Later" color= "warning">Maybe Later...</ion-button>
-				<ion-button id="DidIt" color= "newGreen">I Did it!</ion-button>
+				<ion-button id="Later" color= "warning" size="small">Maybe Later...</ion-button>
+				<ion-button id="DidIt" color= "newGreen" size="small">I Did it!</ion-button>
 			</ion-col>
 		</ion-row>
 	</ion-grid>

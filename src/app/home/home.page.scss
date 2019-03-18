@@ -1,10 +1,14 @@
 
 
 ion-content {
-	--background: url("../../assets/Sunset.png") no-repeat center center fixed;
 	background-size: auto;
-
-	}
+}
+ion-content.Day{
+	--background: url("../../assets/Sunset.png") no-repeat center center fixed;
+}
+ion-content.Night{
+	--background: url("../../assets/Night.png") no-repeat center center fixed;
+}
 
 ion-header::after {
 	background-image: none;
@@ -56,12 +60,22 @@ ion-title {
 }
 div {
 	font-size: 3vw;
+}
+div.Day{
 	color: #424242;
+}
+div.Night{
+	color: #dcdcdc;
 }
 ion-grid {
 	border-radius: .5em;
-	background-color: #ead0d077;
 	margin-bottom: 2em;
+}
+ion-grid.Day {
+	background-color: #ead0d077;
+}
+ion-grid.Night {
+	background-color: #747383aa;
 }
 ion-button {
 	--color: #000000 !important;
