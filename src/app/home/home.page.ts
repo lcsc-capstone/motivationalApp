@@ -28,6 +28,10 @@ export class HomePage implements OnInit{
 			var session = "AM";
 			var hs;
 			var ms;
+			if ((h >= 20)||(h <= 8)){
+				this.active = false; 
+				this.backgroundPic = "./assets/Night.png";
+			}
 
 			if(h >= 12){
 				if(h != 12){
@@ -47,10 +51,6 @@ export class HomePage implements OnInit{
 			var time = hs + ":" + ms + " " + session;
 			//document.getElementById("MyClockDisplay").innerText = time; Seems to cause Errors
 			document.getElementById("MyClockDisplay").textContent = time;
-			if ((h >= 8 && session == "PM")||(h <= 8 && session == "AM")){
-				this.active = false; 
-				this.backgroundPic = "./assets/Night.png";
-			}
 			setInterval(this.showTime, 1000);
 			
 		}
