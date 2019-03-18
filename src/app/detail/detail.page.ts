@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { Motivation } from '../motivation.interface';
 import { StorageService } from '../storage.service';
+
 @Component({
   selector: 'app-detail',
   templateUrl: './detail.page.html',
@@ -20,8 +21,7 @@ export class DetailPage implements OnInit {
 	}
   	ngOnInit() {
   	}
-
-
+  	
 	toggleGroup(group) {
       		if (this.isGroupShown(group)) {
           		this.shownGroup = null;

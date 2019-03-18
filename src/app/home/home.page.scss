@@ -1,23 +1,80 @@
-:host {
-	ion-content {
-		--background: url("../../assets/SunriseSunset1080x1920.png") no-repeat center center fixed;
-		background-size: auto;
-		width: 100vw;
-		height: 55vh;
-		}
+
+
+ion-content {
+	--background: url("../../assets/Sunset.png") no-repeat center center fixed;
+	background-size: auto;
+
+	}
+
+ion-header::after {
+	background-image: none;
+}
+ion-toolbar {
+	--background: transparent;
+	--ion-color-base: transparent !important;
+}
+#menu {
+	--color: "newWhite"
+}
+ion-title {
+	padding-top: 4px;
+	font-size: 1em;
+	display: inline-block;
+}
+.float-right {
+	float: right;
+}
+#MyClockDisplay {
+	font-size: 20vw;
+	text-align: center;
+	color: #dcdcdc;
+	text-shadow: 3px 2px 3px black;
+	margin-top: 35px;
+	margin-bottom: 16px;
+}
+#Current {
+	font-size: 6.25vw;
+	text-align: center;
+	color: #dcdcdc;
+	text-shadow: 3px 2px 3px black;
+	font-weight: bold;
+	margin-top: 16px;
+}
+#Clear {
+	font-size: 3.75vw;
+	text-align: center;
+	color: #424242;
+	font-weight: bold;
+	margin-top: 16px;
+}
+#No {
+	font-size: 3.75vw;
+	text-align: center;
+	color: #424242;
+	font-weight: bold;
+	margin-top: 16px;
+}
+div {
+	font-size: 3vw;
+	color: #424242;
+}
+ion-grid {
+	border-radius: .5em;
+	background-color: #ead0d077;
+	margin-bottom: 2em;
+}
+ion-button {
+	--color: #000000 !important;
+}
+#Date, #DidIt, #Later {
+	float: right;
+}
+#Time {
+	margin-top: 2vw;
 }
 .welcome-card ion-img {
   max-height: 35vh;
   overflow: hidden;
 }
 
-@media screen and (min-width: 1930px) {
-	:host{
-		ion-content{
-		background: url("../../assets/SunriseSunset1200x1980.png")no-repeat center center fixed;
-		background-size: auto;
-		width: 100vw;
-		height: 55vh;
-		}
-	}
-}
+

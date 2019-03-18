@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SettingsService } from '../settings.service';
 
 @Component({
   selector: 'app-setting',
@@ -7,8 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SettingPage implements OnInit {
 
-  constructor() { }
-
+    constructor(public settings:SettingsService) {
+	  
+    }
+	switchdarkmode() {
+		this.settings.switch_darkmode();
+	}
   ngOnInit() {
   }
 
