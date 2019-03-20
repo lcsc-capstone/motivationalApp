@@ -79,10 +79,13 @@ export class HomePage implements OnInit{
 			
 	}
 	getBackground(){
-			if (this.active != false){ //"this.active == false" is the way it's Supposed to go, if it is ever "this.active != false", it for testing purposes ONLY!
+			if (this.active == false){ //"this.active == false" is the way it's Supposed to go, if it is ever "this.active != false", it for testing purposes ONLY!
 				return "Night";
 			} else {
 				return "Day";
 			}
+	}
+	getActive(){
+		return this.active; //Should return this.active, !this.active is for testing
 	}
 }

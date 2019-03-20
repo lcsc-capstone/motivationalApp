@@ -38,13 +38,13 @@
 			</ion-col>
 		</ion-row>
 		<ion-row>
-			<ion-col>
+			<ion-col size = "3">
 				<div id="Time" [ngClass] = "getBackground()">
 					HH:MM
 				</div>
 			</ion-col>
 			<ion-col>
-				<ion-button id="Later" color= "warning" size="small">Maybe Later...</ion-button>
+				<ion-button id="Later" [color]= "getActive() ? 'warning' : 'grey'" size="small">Maybe Later...</ion-button>
 				<ion-button id="DidIt" color= "newGreen" size="small">I Did it!</ion-button>
 			</ion-col>
 		</ion-row>
@@ -63,13 +63,13 @@
 			</ion-col>
 		</ion-row>
 		<ion-row>
-			<ion-col>
-				<div id="Time" [ngClass] = "getBackground()">
+			<ion-col size = "3">
+				<div id="Time" [ngClass] = "getBackground()" >
 					HH:MM
 				</div>
 			</ion-col>
 			<ion-col>
-				<ion-button id="Later" color= "warning" size="small">Maybe Later...</ion-button>
+				<ion-button id="Later" [color]= "getActive() ? 'warning' : 'grey'" size="small">Maybe Later...</ion-button>
 				<ion-button id="DidIt" color= "newGreen" size="small">I Did it!</ion-button>
 			</ion-col>
 		</ion-row>
@@ -88,13 +88,13 @@
 			</ion-col>
 		</ion-row>
 		<ion-row>
-			<ion-col>
-				<div id="Time" [ngClass] = "getBackground()">
+			<ion-col size = "3">
+				<div id="Time" [ngClass] = "getBackground()" >
 					HH:MM
 				</div>
 			</ion-col>
 			<ion-col>
-				<ion-button id="Later" color= "warning" size="small">Maybe Later...</ion-button>
+				<ion-button id="Later" [color]= "getActive() ? 'warning' : 'grey'" size="small">Maybe Later...</ion-button> 
 				<ion-button id="DidIt" color= "newGreen" size="small">I Did it!</ion-button>
 			</ion-col>
 		</ion-row>
