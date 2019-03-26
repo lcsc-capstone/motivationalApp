@@ -11,6 +11,7 @@ export class HomePage implements OnInit{
 	motivations: any; //Used to grab the motivations
 	active: boolean; //Used to change Background
 	backgroundPic: String;
+	viewing: boolean;
 	constructor(public menuCtrl: MenuController, public getStore: StorageService) {
 		this.motivations = getStore.getAllStoredMotivations();
 	}
@@ -18,7 +19,7 @@ export class HomePage implements OnInit{
 		this.menuCtrl.toggle();
 	}
 	
-	ngOnInit() {this.showTime();}
+	ngOnInit() {this.showTime();} //Clock seems to keep running after being Clicked off of
 	showTime(){
 			this.active = true;
 			this.backgroundPic = "./assets/Sunset.png";
