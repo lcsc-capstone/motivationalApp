@@ -36,7 +36,7 @@ export class HomePage implements OnInit{
 				ms = m.toString();
 			}			
 			var time = hs + ":" + ms + " " + session;
-			document.getElementById("MyClockDisplay").innerText = time;
+			//document.getElementById("MyClockDisplay").innerText = time;
 			document.getElementById("MyClockDisplay").textContent = time;
 			
 			setInterval(this.showTime, 1000);

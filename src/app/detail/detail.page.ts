@@ -16,12 +16,14 @@ export class DetailPage implements OnInit {
 		//this.items = new Array();
 		this.storage.getAllStoredMotivations().then(data =>{
 			this.items = data;
+			//this.DateConvert(this.items);
 			console.log(this.items[0].name);
+      console.log(this.items)
 		})
 	}
   	ngOnInit() {
   	}
-  	
+
 	toggleGroup(group) {
       		if (this.isGroupShown(group)) {
           		this.shownGroup = null;
@@ -35,4 +37,17 @@ export class DetailPage implements OnInit {
   	isGroupShown(group) {
       		return this.shownGroup == group;
   	};
+
+  	/*DateConvert(items){
+  		console.log(items)
+  		for(var i = 0; i < items.length; i++){
+  			var buffer, buffer2;
+  			var d = new Date(items[i].firstDate);
+  			var buffer = new Date(d.toLocaleTimeString());
+  			var buffer2 = new Date(d.toDateString());
+  			//var d = new Date(buffer2 + buffer)
+  			console.log(d);
+  		}
+  	};*/
+
 }

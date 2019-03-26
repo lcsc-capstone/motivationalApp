@@ -13,22 +13,20 @@
 <ion-content padding>
 
 	<ion-list class="accordion" *ngFor= "let item of items; let i=index"> <!--> Controls everything in the accordion list as a whole <!-->
-		<ion-item class="accordionHeader"  lines="none" (click)="toggleGroup(i)" [ngClass]="{active: isGroupShown(i)}"> 
-		<!--> accordionHeader is in charge of creating each item for the list <!-->
+		<ion-item class="accordionHeader"  lines="none"  (click)="toggleGroup(i)" ngClass="{active: isGroupShown(i)"> 
+		<!--> accordionHeader is in charge of creating each item for the list [ngClass]="{active: isGroupShown(i)}"<!-->
 			<ion-label class="accordionLabel">
 				<ion-icon class = "plus_minus" [name]="isGroupShown(i) ? 'arrow-up' : 'arrow-down'" size="medium">
 				</ion-icon>
-				{{item.name}} 
+				{{item.name}}
+				<ion-label class= "accordionPanel" *ngIf="isGroupShown(i)"> 
+					{{item.firstDate}}
+					<ion-button> Completed</ion-button>
+					<ion-button [routerLink] = " ['/new-motivation']"> Edit </ion-button>
+				</ion-label>
 			</ion-label>
 			<!--> accordionLabel is being filled of items from item.header <!-->
 			<!--> A div panel that is populated with information for the accordion. Is shown and hidden via clicks on the ion item <!-->
-		</ion-item>
-		<ion-item lines="none" *ngIf="isGroupShown(i)"> 
-			<ion-label class="accordionPanel"> 
-				{{item.firstDate}}
-				<ion-button> Completed</ion-button>
-				<ion-button [routerLink] = " ['/new-motivation']"> Edit </ion-button>
-			</ion-label>
 		</ion-item>
 	</ion-list>
 </ion-content>
