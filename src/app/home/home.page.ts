@@ -1,5 +1,6 @@
 import { Component,  OnInit } from '@angular/core';
-import {MenuController} from '@ionic/angular';
+import {MenuController, LoadingController} from '@ionic/angular';
+import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StorageService } from '../storage.service';
 
 @Component({
@@ -11,14 +12,23 @@ export class HomePage implements OnInit{
 	motivations: any; //Used to grab the motivations
 	active: boolean; //Used to change Background
 	backgroundPic: String;
-	constructor(public menuCtrl: MenuController, public getStore: StorageService) {
+	interval: any;
+	isLoading: boolean;
+	constructor(public menuCtrl: MenuController, public getStore: StorageService, public loadingCtr: LoadingController, public splashScreen: SplashScreen) {
 		this.motivations = getStore.getAllStoredMotivations();
 	}
 	toggleMenu(){
 		this.menuCtrl.toggle();
 	}
 	
-	ngOnInit() {this.showTime();}
+	ngOnInit() {} //Clock seems to keep running after being Clicked off of
+	ionViewWillEnter(){
+		this.presentLoader();
+		//This seems to break if accessed from the NewMotivation Page. Working on Fix (James)
+		this.showTime();
+		this.dismissLoader();
+		console.log(this.isLoading);
+		}
 	showTime(){
 			this.active = true;
 			this.backgroundPic = "./assets/Sunset.png";
@@ -51,7 +61,7 @@ export class HomePage implements OnInit{
 			var time = hs + ":" + ms + " " + session;
 			//document.getElementById("MyClockDisplay").innerText = time; Seems to cause Errors
 			document.getElementById("MyClockDisplay").textContent = time;
-			setInterval(this.showTime, 1000);
+			this.interval = setInterval(this.showTime, 1000);
 			
 		}
 	showTimeMil(){
@@ -75,8 +85,11 @@ export class HomePage implements OnInit{
 			this.active = false; 
 			this.backgroundPic = "./assets/Night.png";
 		}
-		setInterval(this.showTime, 1000);
+		this.interval = setInterval(this.showTime, 1000);
 			
+	}
+	ionViewWillLeave(){
+		clearInterval(this.interval);
 	}
 	getBackground(){
 			if (this.active == false){ //"this.active == false" is the way it's Supposed to go, if it is ever "this.active != false", it for testing purposes ONLY!
@@ -87,5 +100,22 @@ export class HomePage implements OnInit{
 	}
 	getActive(){
 		return this.active; //Should return this.active, !this.active is for testing
+	}
+	async presentLoader(){
+		this.isLoading = true;
+		return await this.loadingCtr.create({
+			duration: 1500
+		}).then(loader => {
+			loader.present().then( ( ) => {
+				if(!this.isLoading){
+					loader.dismiss();
+				}
+			})
+		})
+		
+	}
+	async dismissLoader(){
+		this.isLoading = false;
+		return await this.loadingCtr.dismiss();
 	}
 }

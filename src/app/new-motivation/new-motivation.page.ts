@@ -56,8 +56,8 @@ export class NewMotivationPage implements OnInit {
 			).catch(res=> {
 				console.log(res);
 			}
-			)
-	}
+			) 
+	} 
 
 	ngOnInit() {}
 	stopDateToggle(){
