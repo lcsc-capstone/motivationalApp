@@ -13,10 +13,9 @@ export class DetailPage implements OnInit {
 	items: any; //The items array initiziler 
 	shownGroup = null; //Controlls the hidden / shown values for the div in html
 	constructor(private storage: StorageService) { 
-		//this.items = new Array();
 		this.storage.getAllStoredMotivations().then(data =>{
 			this.items = data;
-			//this.DateConvert(this.items);
+			this.DateConvert(this.items);
 			console.log(this.items[0].name);
       console.log(this.items)
 		})
@@ -38,16 +37,21 @@ export class DetailPage implements OnInit {
       		return this.shownGroup == group;
   	};
 
-  	/*DateConvert(items){
+  	DateConvert(items){
   		console.log(items)
   		for(var i = 0; i < items.length; i++){
-  			var buffer, buffer2;
-  			var d = new Date(items[i].firstDate);
-  			var buffer = new Date(d.toLocaleTimeString());
-  			var buffer2 = new Date(d.toDateString());
-  			//var d = new Date(buffer2 + buffer)
-  			console.log(d);
+    			var buffer, buffer2,last,final,part;
+          if(items[i].firstDate){
+    			var d = new Date(items[i].firstDate); //sets up the date value for parsing
+          buffer = d.toDateString(); //converts the date to readable for the day, month, year
+          buffer2 = d.toLocaleTimeString(); //Readable time format
+          final = buffer + " " + buffer2; // adds the buffers set above to make it really readable
+          last = final.lastIndexOf(":"); //get last position of seconds in the time
+          part = final.substr(last+3,final.length); // obtain AM / PM of the string
+          final = final.substr(0,last); // get rid of seconds in the time string
+          items[i].firstDate = final + part; // Finally add AM/PM back to initial string.
+        }
   		}
-  	};*/
+  	};
 
 }
