@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Storage } from '@ionic/storage';
-
+import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 import { NativeRingtones } from '@ionic-native/native-ringtones/ngx';
 
 import { Motivation } from '../motivation.interface';
@@ -30,7 +30,7 @@ export class NewMotivationPage implements OnInit {
 	alarmValue: boolean; //Value of Switch
 	lastRemind: any; //last Date/time for Reminder
 	ringtonesList: any;
-	constructor(private storage: StorageService, private ringtones: NativeRingtones) { 
+	constructor(private storage: StorageService, private ringtones: NativeRingtones, private localNotifications: LocalNotification) { 
 		this.motivation = {
 			motivation_id: 0,
 			name: '',
@@ -145,6 +145,14 @@ export class NewMotivationPage implements OnInit {
 	}
 	addMotivation(){
 		var temp = Math.floor(Math.random() * 100000000000000000000);
+		this.localNotifications.schedule({
+			id: temp
+			text: this.name + ' has been Triggered! Time to do your thing!',
+			trigger: {at: new Date(this.firstRemind)},
+			led: 'FF0000',
+			sound: null //till we get sound working, this is a placeholder. (James)
+		});
+
 		this.motivation.motivation_id = temp;
 		this.motivation.name = this.name;
 		this.motivation.remind = this.remind;
