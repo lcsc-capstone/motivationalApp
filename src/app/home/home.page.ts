@@ -24,10 +24,8 @@ export class HomePage implements OnInit{
 	ngOnInit() {} //Clock seems to keep running after being Clicked off of
 	ionViewWillEnter(){
 		this.presentLoader();
-		//This seems to break if accessed from the NewMotivation Page. Working on Fix (James)
-		this.showTime();
+		this.showTime(); 
 		this.dismissLoader();
-		console.log(this.isLoading);
 		}
 	showTime(){
 			this.active = true;
@@ -58,11 +56,9 @@ export class HomePage implements OnInit{
 			} else {
 				ms = m.toString();
 			}			
-			var time = hs + ":" + ms + " " + session;
-			//document.getElementById("MyClockDisplay").innerText = time; Seems to cause Errors
-			document.getElementById("MyClockDisplay").textContent = time;
+			var myTime = hs + ":" + ms + " " + session;
+			document.getElementById("MyClockDisplay").textContent = myTime;	
 			this.interval = setInterval(this.showTime, 1000);
-			
 		}
 	showTimeMil(){
 		this.active = true;
@@ -118,4 +114,5 @@ export class HomePage implements OnInit{
 		this.isLoading = false;
 		return await this.loadingCtr.dismiss();
 	}
+
 }
