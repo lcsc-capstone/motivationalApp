@@ -30,6 +30,7 @@ export class NewMotivationPage implements OnInit {
 	alarmValue: boolean; //Value of Switch
 	lastRemind: any; //last Date/time for Reminder
 	ringtonesList: any;
+	ringtone: string;
 	constructor(private storage: StorageService, private ringtones: NativeRingtones, private localNotifications: LocalNotifications) { 
 		this.motivation = {
 			motivation_id: 0,
@@ -150,7 +151,7 @@ export class NewMotivationPage implements OnInit {
 			text: this.name + ' has been Triggered! Time to do your thing!',
 			trigger: {at: new Date(this.firstRemind)},
 			led: 'FF0000',
-			sound: null //till we get sound working, this is a placeholder. (James)
+			sound: this.ringtone
 		});
 
 		this.motivation.motivation_id = temp;
@@ -159,7 +160,7 @@ export class NewMotivationPage implements OnInit {
 		this.motivation.firstDate = this.firstRemind;
 		this.motivation.indefToggle = this.alarmValue;
 		this.motivation.stopDate = this.lastRemind;
-		this.motivation.sound = ''; //till we get sound working, temp value of nothing. (Matt)
+		this.motivation.sound = this.ringtone;
 
 		this.storage.addMotivation(this.motivation);
 
