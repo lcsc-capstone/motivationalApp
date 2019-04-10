@@ -46,7 +46,7 @@
 		</ion-item>
 		<ion-item>
 			<ion-label>First Reminder</ion-label> <!-- Time for the First, or only, Reminder -->
-			<ion-datetime display-format="MMM DD, YYYY HH:mm" picker-format= "MMM DD, YYYY HH:mm"  [(ngModel)]="firstDate" [value]="firstRemind"></ion-datetime>
+			<ion-datetime display-format="MMM DD, YYYY HH:mm" picker-format= "MMM DD, YYYY HH:mm"  [(ngModel)]="firstDate"></ion-datetime>
 			<!--Dunno if "min" is working the way its supposed to. Needs testing when we submit forms--> <!--[min] = "getNow()"-->
 		</ion-item>
 		<ion-item>
@@ -56,7 +56,7 @@
 		</ion-item>
 		<ion-item>
 			<ion-label>Stop Date</ion-label> <!-- Date to Stop Reminders --> 
-			<ion-datetime display-format="MMM DD, YYYY" picker-format="MMM DD, YYYY" [disabled]="enableAlarm"  [(ngModel)]="stopDate" [value]="lastRemind"></ion-datetime>
+			<ion-datetime display-format="MMM DD, YYYY" picker-format="MMM DD, YYYY" [disabled]="enableAlarm"  [(ngModel)]="stopDate"></ion-datetime>
 			<!--Dunno if "min" is working the way its supposed to. Needs testing when we submit forms--> <!--[min] = "getNow()"-->
 		</ion-item>
 		<ion-item *ngIf = "ringtonesList!=undefined  && ringtonesList.length > 0">

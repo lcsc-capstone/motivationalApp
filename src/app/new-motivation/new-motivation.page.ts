@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 import { NativeRingtones } from '@ionic-native/native-ringtones/ngx';
-
 import { Motivation } from '../motivation.interface';
 import { StorageService } from '../storage.service';
 
@@ -25,10 +24,10 @@ export class NewMotivationPage implements OnInit {
 	selected: string; //Current Default Selected
 	name: string; //Name of reminder
 	remind: string; //How often to remind
-	firstRemind: any; //first Date/time for Reminder
+	firstDate: any; //first Date/time for Reminder
 	enableAlarm: boolean; //Enables last Date
 	alarmValue: boolean; //Value of Switch
-	lastRemind: any; //last Date/time for Reminder
+	stopDate: any; //last Date/time for Reminder
 	ringtonesList: any;
 	sound: string;
 	constructor(private storage: StorageService, private ringtones: NativeRingtones, private localNotifications: LocalNotifications) { 
@@ -74,63 +73,63 @@ export class NewMotivationPage implements OnInit {
 			case "water":
 				this.name = "Drink Water";
 				this.remind = "hour";
-				this.firstRemind = this.nowHour.toISOString();
+				this.firstDate = this.nowHour.toISOString();
 				this.alarmValue = true;
 				break;
 			case "clean":
 				this.name = "Clean House";
 				this.remind = "week";
-				this.firstRemind = this.nowWeek.toISOString();
+				this.firstDate = this.nowWeek.toISOString();
 				this.alarmValue = true;
 				break;
 			case "dishes":
 				this.name = "Wash Dishes";
 				this.remind = "day";
-				this.firstRemind = this.nowDay.toISOString();
+				this.firstDate = this.nowDay.toISOString();
 				this.alarmValue = true;
 				break;
 			case "workout":
 				this.name = "Go to the Gym";
 				this.remind = "day";
-				this.firstRemind = this.nowDay.toISOString();
+				this.firstDate = this.nowDay.toISOString();
 				this.alarmValue = true;
 				break;
 			case "meeting":
 				this.name = "Meeting with Someone";
 				this.remind = "month";
-				this.firstRemind = this.nowMonth.toISOString();
+				this.firstDate = this.nowMonth.toISOString();
 				this.alarmValue = true;
 				break;
 			case "med":
 				this.name = "Take Medication";
 				this.remind = "day";
-				this.firstRemind = this.nowDay.toISOString();
+				this.firstDate = this.nowDay.toISOString();
 				this.alarmValue = true;
 				break;
 			case "remind":
 				this.name = "Set Reminder";
 				this.remind = "joke";
-				this.firstRemind = this.nowHour.toISOString();
+				this.firstDate = this.nowHour.toISOString();
 				this.alarmValue = true;
 				break;
 			case "food":
 				this.name = "Eat Something"
 				this.remind = "trihour";
-				this.firstRemind = this.nowHour.toISOString();
+				this.firstDate = this.nowHour.toISOString();
 				this.alarmValue = true;
 				break;
 			case "zzz":
 				this.name = "Go to Sleep";
 				this.remind = "day";
-				this.firstRemind = this.nowDay.toISOString();
+				this.firstDate = this.nowDay.toISOString();
 				this.alarmValue = true;
 				break;
 			case "hw":
 				this.name = "Homework Assignment";
 				this.remind = "day";
-				this.firstRemind = this.nowDay.toISOString();
+				this.firstDate = this.nowDay.toISOString();
 				this.alarmValue = false;
-				this.lastRemind = this.nowMonth.toISOString();
+				this.stopDate = this.nowMonth.toISOString();
 				break;
 		}
 
@@ -144,12 +143,23 @@ export class NewMotivationPage implements OnInit {
 	daysInMonth(month,year) {
 		return new Date(year, month, 0).getDate();
 	}
+	scheduleNotification() {
+    this.localNotifications.schedule({
+      id: 1,
+      title: 'Attention',
+      text: 'Test Notification',
+      trigger: { at: new Date(new Date().getTime() + 5 * 1000) },
+      foreground: true // Show the notification while app is open
+    });
+	}
 	addMotivation(){
+		console.log(new Date(this.firstDate));
+		this.scheduleNotification();
 		var temp = Math.floor(Math.random() * 100000000000000000000);
 		this.localNotifications.schedule({
 			id: temp,
 			text: this.name + ' has been Triggered! Time to do your thing!',
-			trigger: {at: new Date(this.firstRemind)},
+			trigger: {at: new Date(this.firstDate)},
 			led: 'FF0000',
 			sound: this.sound
 		});
@@ -157,9 +167,9 @@ export class NewMotivationPage implements OnInit {
 		this.motivation.motivation_id = temp;
 		this.motivation.name = this.name;
 		this.motivation.remind = this.remind;
-		this.motivation.firstDate = this.firstRemind;
+		this.motivation.firstDate = this.firstDate;
 		this.motivation.indefToggle = this.alarmValue;
-		this.motivation.stopDate = this.lastRemind;
+		this.motivation.stopDate = this.stopDate;
 		this.motivation.sound = this.sound;
 
 		this.storage.addMotivation(this.motivation);
@@ -175,9 +185,9 @@ export class NewMotivationPage implements OnInit {
 				console.log('Remind Set ', val);
 			});
 		});
-		this.storage.set('firstRemind', this.firstRemind).then(()=> {
-			this.storage.get('firstRemind').then((val) => {
-				console.log('firstRemind Set ', val);
+		this.storage.set('firstDate', this.firstDate).then(()=> {
+			this.storage.get('firstDate').then((val) => {
+				console.log('firstDate Set ', val);
 			});
 		});
 		this.storage.set('alarmValue', this.alarmValue).then(()=> {
@@ -185,16 +195,17 @@ export class NewMotivationPage implements OnInit {
 				console.log('alarmValue Set ', val);
 			});
 		});
-		this.storage.set('lastRemind', this.lastRemind).then(()=> {
-			this.storage.get('lastRemind').then((val) => {
-				console.log('lastRemind Set ', val);
+		this.storage.set('stopDate', this.stopDate).then(()=> {
+			this.storage.get('stopDate').then((val) => {
+				console.log('stopDate Set ', val);
 			});
 		});(Commented out due to rewriting for storage. (Matt)*/
 		this.name = "";
 		this.selected = null;
 		this.remind = "";
-		this.firstRemind = '';
+		this.firstDate = '';
 		this.alarmValue = true;
-		this.lastRemind = '';
+		this.stopDate = '';
 	}
+	
 	}
