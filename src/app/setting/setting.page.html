@@ -16,23 +16,38 @@
 
 <ion-content padding>
   <ion-list>
+	<!---Shuts off all notifications. Matt has to finish alerts before I can do anything with this.--->
     <ion-item>
 		<ion-label>Mute</ion-label>
 		<ion-toggle></ion-toggle>
     </ion-item>
+	<!---Military time, toggles result to activate Military time--->
 	<ion-item>
 		<ion-label>Military Time</ion-label>
 		<ion-toggle></ion-toggle>
     </ion-item>
+	<!---Not a priority since phones have a built in DND--->
 	<ion-item>
 		<ion-label>Do Not Disturb</ion-label>
     </ion-item>
+	<!--- This is dark mode. Gonna focus on this next after the clear data--->
 	<ion-item>
 		<ion-label>Dark Mode</ion-label>
 		<ion-toggle (ionChange) = "switchdarkmode()" color="dark"></ion-toggle>
     </ion-item>
+	<!--- This is where we delete storage. Need to make a popup command to double check that people want to delete their storage.--->
 	<ion-item>
-		<ion-button expand="block" (click) = "switchnukedata()">Clear User Data</ion-button>
+		<ion-button expand="block" ng-click="openPopover($event)" (click) = "switchnukedata()">Clear User Data</ion-button>
     </ion-item>
+	<script id="my-popover.html" type="text/ng-template">
+		<ion-popover-view>
+			<ion-header-bar>
+				<h1 class="title">My Popover Title</h1>
+			</ion-header-bar>
+			<ion-content>
+				Hello!
+			</ion-content>
+		</ion-popover-view>
+	</script>
   </ion-list>
 </ion-content>
