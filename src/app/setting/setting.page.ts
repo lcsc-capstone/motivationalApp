@@ -14,6 +14,9 @@ export class SettingPage implements OnInit {
 	switchdarkmode() {
 		this.settings.switch_darkmode();
 	}
+	switchnukedata(){
+		this.settings.switch_nukedata();
+	}
   ngOnInit() {
   }
 

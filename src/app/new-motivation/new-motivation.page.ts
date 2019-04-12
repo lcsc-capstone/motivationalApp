@@ -32,6 +32,7 @@ export class NewMotivationPage implements OnInit {
 	ringtonesList: any;
 	sound: string;
 	constructor(private plt: Platform, private storage: StorageService, private ringtones: NativeRingtones, private localNotifications: LocalNotifications, private alertCtrl: AlertController) { 
+
 		this.motivation = {
 			motivation_id: 0,
 			name: '',
@@ -46,7 +47,8 @@ export class NewMotivationPage implements OnInit {
 				this.showAlert(res.title, res.text);
 			});
 		});
-		
+		}
+
 		this.alarmValue = true;
 		this.enableAlarm = false;
 		this.nowNum = new Date();
@@ -65,6 +67,7 @@ export class NewMotivationPage implements OnInit {
 			}
 			) 
 	} 
+
 
 	ngOnInit() {}
 	stopDateToggle(){
@@ -150,6 +153,7 @@ export class NewMotivationPage implements OnInit {
 	daysInMonth(month,year) {
 		return new Date(year, month, 0).getDate();
 	}
+
 	scheduleNotification() {
     this.localNotifications.schedule({
       id: 1,
@@ -216,6 +220,7 @@ export class NewMotivationPage implements OnInit {
 		this.firstDate = '';
 		this.alarmValue = true;
 		this.stopDate = '';
+
 	}
 	showAlert(header, msg) {
 		this.alertCtrl.create({

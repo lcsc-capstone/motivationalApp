@@ -27,6 +27,7 @@ import { StorageService } from './storage.service';
     SplashScreen,
 	StorageService,
 	LocalNotifications,
+
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
