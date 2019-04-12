@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Platform } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
-import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
+import { LocalNotifications, ELocalNotificationTriggerUnit, ILocalNotificationActionType, ILocalNotification } from '@ionic-native/local-notifications/ngx';
 import { NativeRingtones } from '@ionic-native/native-ringtones/ngx';
 import { Motivation } from '../motivation.interface';
 import { StorageService } from '../storage.service';
@@ -30,7 +31,7 @@ export class NewMotivationPage implements OnInit {
 	stopDate: any; //last Date/time for Reminder
 	ringtonesList: any;
 	sound: string;
-	constructor(private storage: StorageService, private ringtones: NativeRingtones, private localNotifications: LocalNotifications) { 
+	constructor(private plt: Platform, private storage: StorageService, private ringtones: NativeRingtones, private localNotifications: LocalNotifications) { 
 		this.motivation = {
 			motivation_id: 0,
 			name: '',
@@ -38,8 +39,13 @@ export class NewMotivationPage implements OnInit {
 			firstDate: '',
 			indefToggle: false,
 			stopDate: '',
-			sound: '',
+			sound: ''
 		}
+		this.plt.ready().then(() => {
+			this.localNotifications.on('trigger').subscribe(res => {
+			});
+		});
+		
 		this.alarmValue = true;
 		this.enableAlarm = false;
 		this.nowNum = new Date();
@@ -158,10 +164,12 @@ export class NewMotivationPage implements OnInit {
 		var temp = Math.floor(Math.random() * 100000000000000000000);
 		this.localNotifications.schedule({
 			id: temp,
+			title: this.name + " Alert!",
 			text: this.name + ' has been Triggered! Time to do your thing!',
 			trigger: {at: new Date(this.firstDate)},
 			led: 'FF0000',
-			sound: this.sound
+			sound: this.sound,
+			foreground: true
 		});
 
 		this.motivation.motivation_id = temp;
