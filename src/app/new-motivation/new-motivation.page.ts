@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Platform } from '@ionic/angular';
+import { Platform, AlertController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 import { LocalNotifications, ELocalNotificationTriggerUnit, ILocalNotificationActionType, ILocalNotification } from '@ionic-native/local-notifications/ngx';
 import { NativeRingtones } from '@ionic-native/native-ringtones/ngx';
@@ -31,7 +31,7 @@ export class NewMotivationPage implements OnInit {
 	stopDate: any; //last Date/time for Reminder
 	ringtonesList: any;
 	sound: string;
-	constructor(private plt: Platform, private storage: StorageService, private ringtones: NativeRingtones, private localNotifications: LocalNotifications) { 
+	constructor(private plt: Platform, private storage: StorageService, private ringtones: NativeRingtones, private localNotifications: LocalNotifications, private alertCtrl: AlertController) { 
 		this.motivation = {
 			motivation_id: 0,
 			name: '',
@@ -43,6 +43,7 @@ export class NewMotivationPage implements OnInit {
 		}
 		this.plt.ready().then(() => {
 			this.localNotifications.on('trigger').subscribe(res => {
+				this.showAlert(res.title, res.text);
 			});
 		});
 		
@@ -159,6 +160,7 @@ export class NewMotivationPage implements OnInit {
     });
 	}
 	addMotivation(){
+		this.showAlert("TEST", this.name);
 		console.log(new Date(this.firstDate));
 		this.scheduleNotification();
 		var temp = Math.floor(Math.random() * 100000000000000000000);
@@ -215,5 +217,12 @@ export class NewMotivationPage implements OnInit {
 		this.alarmValue = true;
 		this.stopDate = '';
 	}
+	showAlert(header, msg) {
+		this.alertCtrl.create({
+			header: header,
+			message: msg,
+			buttons: ['Ok']
+		}).then(alert => alert.present());
+  }
 	
 	}
