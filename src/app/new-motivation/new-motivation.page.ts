@@ -47,7 +47,7 @@ export class NewMotivationPage implements OnInit {
 				this.showAlert(res.title, res.text);
 			});
 		});
-		}
+		
 
 		this.alarmValue = true;
 		this.enableAlarm = false;
