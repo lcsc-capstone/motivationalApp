@@ -10,7 +10,7 @@
   </ion-toolbar>
 </ion-header>
 <ion-content padding>
-<div class="calendar-body">
+<div class="cal-body">
 	<ion-grid>
 		<ion-row>
 			<ion-col>Sun</ion-col>
@@ -22,7 +22,15 @@
 			<ion-col>Sat</ion-col>
 		</ion-row>
 		<ion-row>
-			<ion-col *ngFor="let days of days" class="month">{{days}} </ion-col>
+			<ion-col *ngFor="let previous_Days of previous_Days" class = "month">
+				{{previous_Days}}
+			</ion-col>
+			<ion-col *ngFor="let days of days" class = "month">
+				{{days}} 
+			</ion-col>
+			<ion-col *ngFor="let next_Days of next_Days" class = "month">
+				{{next_Days}}
+			</ion-col>
 		</ion-row>
 	</ion-grid>
 </div>

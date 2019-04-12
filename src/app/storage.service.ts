@@ -13,7 +13,7 @@ export class StorageService {
 	constructor(public storage: Storage) {}
 
 	getAllStoredMotivations(){
-		//console.log(this.storage.get(STORAGE_KEY));
+		console.log(this.storage.get(STORAGE_KEY));
 		return this.storage.get(STORAGE_KEY);
 	}
 
@@ -27,6 +27,7 @@ export class StorageService {
 			}
 		});
 	}
+
 
 	removeMotivation( motivation: Motivation){
 		return this.getAllStoredMotivations().then(data => {
