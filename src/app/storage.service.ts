@@ -13,7 +13,7 @@ export class StorageService {
 	constructor(public storage: Storage) {}
 
 	getAllStoredMotivations(){
-		//console.log(this.storage.get(STORAGE_KEY));
+		console.log(this.storage.get(STORAGE_KEY));
 		return this.storage.get(STORAGE_KEY);
 	}
 
@@ -27,6 +27,7 @@ export class StorageService {
 			}
 		});
 	}
+
 
 	removeMotivation( motivation: Motivation){
 		return this.getAllStoredMotivations().then(data => {
@@ -42,8 +43,18 @@ export class StorageService {
 		return this.getAllStoredMotivations().then(data => {
 			if(data){
 				for(var i = 0; i < data.length; i++){
-					if(motivid = data[i].motivation_id)
-					return data[i];
+					if(motivid == data[i].motivation_id){
+						let m: Motivation = {
+							name: data[i].name,
+							motivation_id: data[i].motivation_id,
+							remind: data[i].remind,
+							firstDate: data[i].firstDate,
+							indefToggle: data[i].indefToggle,
+							stopDate: data[i].stopDate,
+							sound: data[i].sound,
+						}
+						return m;
+					}
 				}
 			}
 		});

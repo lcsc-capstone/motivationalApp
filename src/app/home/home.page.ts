@@ -59,7 +59,6 @@ export class HomePage implements OnInit{
 				ms = m.toString();
 			}			
 			var time = hs + ":" + ms + " " + session;
-			//document.getElementById("MyClockDisplay").innerText = time; Seems to cause Errors
 			document.getElementById("MyClockDisplay").textContent = time;
 			this.interval = setInterval(this.showTime, 1000);
 			

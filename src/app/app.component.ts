@@ -35,7 +35,7 @@ export class AppComponent {
 		url: '/setting',
 		icon: 'cog'
 	}
-  ];
+    ];
 
   constructor(
     private platform: Platform,
