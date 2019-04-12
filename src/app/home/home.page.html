@@ -19,12 +19,12 @@
 </ion-header>
 
 <ion-content fullscreen padding [ngClass] = "getBackground()">
-	<p id="MyClockDisplay" *ngIf="!this.isLoading"></p> <!-- Clock seems to keep running after being Clicked off of -->
-	<p id="Current" *ngIf="!this.isLoading">Most Current Motivations</p>
+	<p id="MyClockDisplay"></p> 
+	<p id="Current">Most Current Motivations</p>
 	<!--<p id="Clear">No Pending Motivations! Have a good day!</p>  This should appear when there are no pending motivations-->
 	<!-- <p id="No">You have no Motivations Currently... Lets make some!</p> This should appear when there are no motivations in the database-->
 	<!-- Insert boxes for 3 triggered motivations -->
-	<ion-grid [ngClass] = "getBackground()" *ngIf="!this.isLoading">
+	<ion-grid [ngClass] = "getBackground()">
 		<ion-row>
 			<ion-col>
 				<div id="Name" [ngClass] = "getBackground()">
@@ -49,7 +49,7 @@
 			</ion-col>
 		</ion-row>
 	</ion-grid>
-	<ion-grid [ngClass] = "getBackground()" *ngIf="!this.isLoading">
+	<ion-grid [ngClass] = "getBackground()">
 		<ion-row>
 			<ion-col>
 				<div id="Name" [ngClass] = "getBackground()">
@@ -74,7 +74,7 @@
 			</ion-col>
 		</ion-row>
 	</ion-grid>
-	<ion-grid [ngClass] = "getBackground()" *ngIf="!this.isLoading">
+	<ion-grid [ngClass] = "getBackground()">
 		<ion-row>
 			<ion-col>
 				<div id="Name" [ngClass] = "getBackground()">

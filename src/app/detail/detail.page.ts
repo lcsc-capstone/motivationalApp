@@ -57,5 +57,4 @@ export class DetailPage implements OnInit {
     goToEditPage(items){
         
     };
-
 }
