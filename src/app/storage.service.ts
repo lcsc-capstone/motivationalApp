@@ -14,6 +14,7 @@ export class StorageService {
 
 	getAllStoredMotivations(){
 		//console.log(this.storage.get(STORAGE_KEY));
+		console.log(Object.keys(this.storage.get(STORAGE_KEY)));
 		return this.storage.get(STORAGE_KEY);
 	}
 
@@ -55,8 +56,8 @@ export class StorageService {
 						}
 						return m;
 					}
-					if(motivid = data[i].motivation_id)
-					return data[i];
+					/*if(motivid = data[i].motivation_id)
+					return data[i];*/
 
 				}
 			}
