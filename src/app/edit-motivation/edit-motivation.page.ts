@@ -46,13 +46,13 @@ export class EditMotivationPage implements OnInit {
 		this.storage.getAllStoredMotivations().then(data => {
 			let id = this.route.snapshot.paramMap.get("id");
 			var temp = parseInt(id,10);
-			this.currentMot = this.storage.findMotivation(temp);
-			this.name = this.currentMot.name;
-			this.name = "Test";
-			console.log(this.currentMot);
-			console.log(this.name);
+			for(var i = 0; i < data.size();i++){
+				console.log(data[i].name);
+			}
+			//this.currentMot = this.storage.findMotivation(temp);
+			//this.name = this.currentMot.name;
+			//console.log(this.currentMot);
 		});
-		
 		this.alarmValue = true;
 		this.enableAlarm = false;
 		this.nowNum = new Date();

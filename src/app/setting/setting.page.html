@@ -1,5 +1,4 @@
 <ion-header>
-	<ion-title [(ngModel)] = "currenttime" value = "currenttime"> </ion-title>
   <ion-toolbar>
   <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
@@ -38,13 +37,7 @@
     </ion-item>
 	<!--- This is where we delete storage. Need to make a popup command to double check that people want to delete their storage.--->
 	<ion-item>
-
-		<ion-label>Clear User Data</ion-label>
-		<ion-select placeholder="..." id="defaults" [(ngModel)]="selected" (ionChange)="setDefaults()">
-				<ion-select-option value="water">Are you sure?</ion-select-option>
-		</ion-select>
-
-		<ion-button expand="block" ng-click="openPopover($event)" (click) = "switchnukedata()">Clear User Data</ion-button>
+		<ion-button (click)="presentAlertMultipleButtons()" expand="block" ng-click="openPopover($event)">Clear User Data</ion-button>
 
     </ion-item>
 	<script id="my-popover.html" type="text/ng-template">
