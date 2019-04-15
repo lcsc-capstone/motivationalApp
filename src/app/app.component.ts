@@ -25,11 +25,11 @@ export class AppComponent {
 		url: '/detail',
 		icon: 'checkmark-circle-outline'
 	},
-  {
+ /* {
      title: 'Calendar',
      url: '/calendar',
      icon: 'calendar'
-  },
+  },*/
 	{
 		title: 'Settings',
 		url: '/setting',
