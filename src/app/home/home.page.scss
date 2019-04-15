@@ -71,9 +71,11 @@ ion-grid {
 }
 ion-grid.Day {
 	background-color: #ead0d077;
+	background-color: rgba(234, 208, 208, 0.66);
 }
 ion-grid.Night {
 	background-color: #747383aa;
+	background-color: rgba(116, 115, 131, .67);
 }
 ion-button {
 	--color: #000000 !important;
