@@ -46,7 +46,8 @@ export class EditMotivationPage implements OnInit {
 		this.storage.getAllStoredMotivations().then(data => {
 			let id = this.route.snapshot.paramMap.get("id");
 			var temp = parseInt(id,10);
-			for(var i = 0; i < data.size();i++){
+			this.currentMot = this.storage.findMotivation(temp);
+			for(var i = 0; i < data;i++){
 				console.log(data[i].name);
 			}
 			//this.currentMot = this.storage.findMotivation(temp);
@@ -69,7 +70,7 @@ export class EditMotivationPage implements OnInit {
 			).catch(res=> {
 				console.log(res);
 			}
-			) 
+			)
 	} 
 
 	ngOnInit() {}

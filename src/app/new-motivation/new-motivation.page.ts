@@ -220,6 +220,7 @@ export class NewMotivationPage implements OnInit {
 		this.firstDate = '';
 		this.alarmValue = true;
 		this.stopDate = '';
+		this.sound = "";
 
 	}
 	showAlert(header, msg) {

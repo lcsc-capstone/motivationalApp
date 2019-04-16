@@ -13,15 +13,23 @@ export class DetailPage implements OnInit {
 	items: any; //The items array initiziler 
 	shownGroup = null; //Controlls the hidden / shown values for the div in html
 	constructor(private storage: StorageService) { 
-		this.storage.getAllStoredMotivations().then(data =>{
+		/*this.storage.getAllStoredMotivations().then(data =>{
 			this.items = data;
 			this.DateConvert(this.items);
 			console.log(this.items[0].name);
       console.log(this.items)
-		})
+		})*/
 	}
   	ngOnInit() {
   	}
+    ionViewWillEnter(){
+      this.storage.getAllStoredMotivations().then(data =>{
+      this.items = data;
+      this.DateConvert(this.items);
+      console.log(this.items[0].name);
+      console.log(this.items)
+      })
+    }
 
 	toggleGroup(group) {
       		if (this.isGroupShown(group)) {
