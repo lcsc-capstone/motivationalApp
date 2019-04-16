@@ -43,17 +43,15 @@ export class EditMotivationPage implements OnInit {
 			stopDate: '',
 			sound: '',
 		}
-		this.storage.getAllStoredMotivations().then(data => {
+		/*this.storage.getAllStoredMotivations().then(data => {
 			let id = this.route.snapshot.paramMap.get("id");
 			var temp = parseInt(id,10);
 			this.currentMot = this.storage.findMotivation(temp);
-			for(var i = 0; i < data;i++){
-				console.log(data[i].name);
-			}
+			this.name = this.currentMot.name;
 			//this.currentMot = this.storage.findMotivation(temp);
 			//this.name = this.currentMot.name;
-			//console.log(this.currentMot);
-		});
+			console.log(this.currentMot);
+		});*/
 		this.alarmValue = true;
 		this.enableAlarm = false;
 		this.nowNum = new Date();
@@ -74,6 +72,26 @@ export class EditMotivationPage implements OnInit {
 	} 
 
 	ngOnInit() {}
+
+	ionViewWillEnter(){
+		this.storage.getAllStoredMotivations().then(data => {
+			let id = this.route.snapshot.paramMap.get("id");
+			var currentid = parseInt(id,10);
+			this.currentMot = data;
+			this.currentMot = this.findMotivation(this.currentMot,currentid);
+			//console.log(this.currentMot);
+			this.name = this.currentMot.name;
+			this.remind = this.currentMot.remind;
+			this.firstDate = this.currentMot.firstDate;
+			this.indefToggle = this.currentMot.indefToggle;
+			this.stopDate = this.currentMot.stopDate;
+			this.sound = this.currentMot.sound;
+
+			
+		});
+
+
+	}
 	stopDateToggle(){
 		this.enableAlarm = !this.enableAlarm;
 	}
@@ -160,6 +178,16 @@ export class EditMotivationPage implements OnInit {
 
 	EditMotivation(){
 
+	}
+
+	findMotivation(data,currentid){
+		if(data){
+				for(var i = 0; i < data.length; i++){
+					if( currentid == data[i].motivation_id){
+						return data[i];
+					}
+				}
+			}
 	}
 	/*addMotivation(){
 		var temp = Math.floor(Math.random() * 100000000000000000000);
