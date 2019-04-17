@@ -1,5 +1,6 @@
 import { Component,  OnInit } from '@angular/core';
 import {MenuController, LoadingController} from '@ionic/angular';
+import { LocalNotifications, ELocalNotificationTriggerUnit, ILocalNotificationActionType, ILocalNotification } from '@ionic-native/local-notifications/ngx';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StorageService } from '../storage.service';
 
@@ -14,8 +15,11 @@ export class HomePage implements OnInit{
 	backgroundPic: String;
 	interval: any;
 	isLoading: boolean;
-	constructor(public menuCtrl: MenuController, public getStore: StorageService, public loadingCtr: LoadingController, public splashScreen: SplashScreen) {
+	constructor(public menuCtrl: MenuController, public getStore: StorageService, public loadingCtr: LoadingController, public splashScreen: SplashScreen, private localNotifications: LocalNotifications) {
 		this.motivations = getStore.getAllStoredMotivations();
+		if(!this.localNotifications.hasPermission()){
+			this.localNotifications.requestPermission();
+		}
 	}
 	toggleMenu(){
 		this.menuCtrl.toggle();
