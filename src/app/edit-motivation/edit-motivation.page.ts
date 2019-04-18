@@ -35,6 +35,7 @@ export class EditMotivationPage implements OnInit {
 	sound: string;
 	indefToggle: boolean;
 	firstDate: any;
+	stopDate: any;
 	constructor(private storage: StorageService, private ringtones: NativeRingtones, public route: ActivatedRoute) {
 
 		this.motivation = {
@@ -87,7 +88,7 @@ export class EditMotivationPage implements OnInit {
 			this.remind = this.currentMot.remind;
 			this.firstDate = this.currentMot.firstDate;
 			this.indefToggle = this.currentMot.indefToggle;
-			this.lastRemind = this.currentMot.stopDate;
+			this.stopDate= this.currentMot.stopDate;
 			this.sound = this.currentMot.sound;
 
 			
