@@ -182,7 +182,7 @@ export class NewMotivationPage implements OnInit {
 		this.motivation.name = this.name;
 		this.motivation.remind = this.remind;
 		this.motivation.firstDate = this.firstDate;
-		this.motivation.indefToggle = this.alarmValue;
+		this.motivation.indefToggle = this.enableAlarm;
 		this.motivation.stopDate = this.stopDate;
 		this.motivation.sound = this.sound;
 
