@@ -5,6 +5,7 @@ import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { NativeRingtones } from '@ionic-native/native-ringtones/ngx';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -26,6 +27,7 @@ import { StorageService } from './storage.service';
 	SettingsService,
     SplashScreen,
 	StorageService,
+  NativeRingtones,
 	LocalNotifications,
 
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }

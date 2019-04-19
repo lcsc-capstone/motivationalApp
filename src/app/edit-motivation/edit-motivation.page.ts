@@ -32,6 +32,9 @@ export class EditMotivationPage implements OnInit {
 	lastRemind: any; //last Date/time for Reminder
 	ringtonesList: any;
 	currentMot: any;
+	sound: string;
+	indefToggle: boolean;
+	firstDate: any;
 	constructor(private storage: StorageService, private ringtones: NativeRingtones, public route: ActivatedRoute) {
 
 		this.motivation = {
@@ -43,16 +46,15 @@ export class EditMotivationPage implements OnInit {
 			stopDate: '',
 			sound: '',
 		}
-		this.storage.getAllStoredMotivations().then(data => {
+		/*this.storage.getAllStoredMotivations().then(data => {
 			let id = this.route.snapshot.paramMap.get("id");
 			var temp = parseInt(id,10);
 			this.currentMot = this.storage.findMotivation(temp);
 			this.name = this.currentMot.name;
-			this.name = "Test";
+			//this.currentMot = this.storage.findMotivation(temp);
+			//this.name = this.currentMot.name;
 			console.log(this.currentMot);
-			console.log(this.name);
-		});
-		
+		});*/
 		this.alarmValue = true;
 		this.enableAlarm = false;
 		this.nowNum = new Date();
@@ -69,10 +71,30 @@ export class EditMotivationPage implements OnInit {
 			).catch(res=> {
 				console.log(res);
 			}
-			) 
+			)
 	} 
 
 	ngOnInit() {}
+
+	ionViewWillEnter(){
+		this.storage.getAllStoredMotivations().then(data => {
+			let id = this.route.snapshot.paramMap.get("id");
+			var currentid = parseInt(id,10);
+			this.currentMot = data;
+			this.currentMot = this.findMotivation(this.currentMot,currentid);
+			//console.log(this.currentMot);
+			this.name = this.currentMot.name;
+			this.remind = this.currentMot.remind;
+			this.firstDate = this.currentMot.firstDate;
+			this.indefToggle = this.currentMot.indefToggle;
+			this.lastRemind = this.currentMot.stopDate;
+			this.sound = this.currentMot.sound;
+
+			
+		});
+
+
+	}
 	stopDateToggle(){
 		this.enableAlarm = !this.enableAlarm;
 	}
@@ -159,6 +181,16 @@ export class EditMotivationPage implements OnInit {
 
 	EditMotivation(){
 
+	}
+
+	findMotivation(data,currentid){
+		if(data){
+				for(var i = 0; i < data.length; i++){
+					if( currentid == data[i].motivation_id){
+						return data[i];
+					}
+				}
+			}
 	}
 	/*addMotivation(){
 		var temp = Math.floor(Math.random() * 100000000000000000000);

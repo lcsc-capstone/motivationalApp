@@ -2,7 +2,7 @@
   <ion-toolbar>
     <ion-title>Edit Motivation</ion-title>
 	 <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
+      <ion-back-button></ion-back-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -13,23 +13,6 @@
 			<ion-label>Motivation Name: </ion-label> 
 			<!-- What do you think this does? It's the Name... For the Motivation... What did you expect? -->
 			<ion-input placeholder="..." inputmode="text" maxlength=20 required="true" [(ngModel)]="name" class="align-right" ></ion-input><!-- Tabs in the placeholder are they themselves placeholders, until proper SCC in implemented -->
-		</ion-item>
-		<ion-item>
-			<ion-label>Motivation Types</ion-label>
-			<ion-select placeholder="..." id="defaults" [(ngModel)]="selected" (ionChange)="setDefaults()">
-				<ion-select-option value="water">Water</ion-select-option>
-				<ion-select-option value="clean">Cleaning</ion-select-option>
-				<ion-select-option value="dishes">Dishes</ion-select-option>
-				<ion-select-option value="workout">Workout</ion-select-option>
-				<ion-select-option value="meeting">Meeting</ion-select-option>
-				<ion-select-option value="med">Medication</ion-select-option>
-				<ion-select-option value="remind">Reminder</ion-select-option>
-				<ion-select-option value="food">Food</ion-select-option>
-				<ion-select-option value="zzz">Sleep</ion-select-option>
-				<ion-select-option value="hw">Homework Assignment</ion-select-option>
-				<!-- Types will change values below. Types will not be in Form Data -->
-			</ion-select>
-
 		</ion-item>
 		<ion-item>
 			<ion-label>When to Remind</ion-label>
@@ -60,14 +43,12 @@
 			<!--Dunno if "min" is working the way its supposed to. Needs testing when we submit forms--> <!--[min] = "getNow()"-->
 		</ion-item>
 		<ion-item *ngIf = "ringtonesList!=undefined  && ringtonesList.length > 0">
-			<ion-label id="sound">Reminder Sounds</ion-label> <!-- Selector for the sounds that will play for the reminder. Will be split into our Items and the Devices --> 
+			<ion-label id="sound">Reminder Sounds</ion-label> <!-- Selector for the sounds that will play for the reminder. Will be split into our Items and the Devices -->
 			<ion-select placeholder="..." [(ngModel)]="sound">
-				<!-- Need to find a way to auto-populate this list with the sounds on their device, and our own sounds we are adding -->
-			<!--	<ion-select-option *ngFor = "let r of ringtonesList">{{ r.url }}</ion-select-option> ionic run android -l -c -s --debug -->
 			</ion-select>
 		</ion-item>
 	</ion-list>
-	<ion-button strong = true (click) = "EditMotivation()">Get Motivated!</ion-button>
+	<ion-button strong = true (click) = "EditMotivation()">Save Changes</ion-button>
 </ion-content>
 <!-- Form Data will be
 String name - Name of the Reminder

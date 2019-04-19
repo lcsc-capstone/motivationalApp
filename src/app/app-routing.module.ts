@@ -18,8 +18,7 @@ const routes: Routes = [
   { path: 'new-motivation', loadChildren: './new-motivation/new-motivation.module#NewMotivationPageModule' },
   { path: 'detail', loadChildren: './detail/detail.module#DetailPageModule' },
   { path: 'setting', loadChildren: './setting/setting.module#SettingPageModule' },
-  { path: 'calendar', loadChildren: './calendar/calendar.module#CalendarPageModule' },
-  { path: 'setting', loadChildren: './setting/setting.module#SettingPageModule' },
+  //{ path: 'calendar', loadChildren: './calendar/calendar.module#CalendarPageModule' },
   { path: 'edit-motivation/:id', loadChildren: './edit-motivation/edit-motivation.module#EditMotivationPageModule' }
 
 ];
