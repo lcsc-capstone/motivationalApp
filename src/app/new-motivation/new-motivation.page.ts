@@ -168,54 +168,6 @@ export class NewMotivationPage implements OnInit {
 		console.log(new Date(this.firstDate));
 		this.scheduleNotification();
 		var temp = Math.floor(Math.random() * 100000000000000000000);
-		switch(this.remind){
-			case "month":
-				this.localNotifications.schedule({			
-					id: temp,
-					title: this.name + " Alert!",
-					text: this.name + ' has been Triggered! Time to do your thing!',
-					trigger: {at: new Date(this.firstDate), every: "month"},
-					led: 'FF0000',
-					sound: this.sound,
-					
-					foreground: true
-				});
-				break;
-			case "week":
-				this.localNotifications.schedule({			
-					id: temp,
-					title: this.name + " Alert!",
-					text: this.name + ' has been Triggered! Time to do your thing!',
-					trigger: {at: new Date(this.firstDate), every: "week"},
-					led: 'FF0000',
-					sound: this.sound,
-					
-					foreground: true
-				});
-				break;
-			case "day":
-				this.localNotifications.schedule({			
-					id: temp,
-					title: this.name + " Alert!",
-					text: this.name + ' has been Triggered! Time to do your thing!',
-					trigger: {at: new Date(this.firstDate), every: "day"},
-					led: 'FF0000',
-					sound: this.sound,
-					foreground: true
-				});
-				break;
-			case "hour":
-				this.localNotifications.schedule({			
-					id: temp,
-					title: this.name + " Alert!",
-					text: this.name + ' has been Triggered! Time to do your thing!',
-					trigger: {at: new Date(this.firstDate), every: "hour"},
-					led: 'FF0000',
-					sound: this.sound,
-					foreground: true
-				});
-				break;
-			default:
 				this.localNotifications.schedule({			
 					id: temp,
 					title: this.name + " Alert!",
@@ -225,8 +177,6 @@ export class NewMotivationPage implements OnInit {
 					sound: this.sound,
 					foreground: true
 				});
-				break;
-		}
 
 		this.motivation.motivation_id = temp;
 		this.motivation.name = this.name;
