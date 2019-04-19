@@ -154,73 +154,80 @@ export class NewMotivationPage implements OnInit {
 		return new Date(year, month, 0).getDate();
 	}
 
-	scheduleNotification() {
-    this.localNotifications.schedule({
-      id: 1,
-      title: 'Attention',
-      text: 'Test Notification',
-      trigger: { at: new Date(new Date().getTime() + 5 * 1000) },
-      foreground: true // Show the notification while app is open
-    });
+	scheduleNotification() { //Literally a test to see if Notifications work
+		this.localNotifications.schedule({
+		  id: 1,
+		  title: 'Attention',
+		  text: 'Test Notification',
+		  trigger: { at: new Date(new Date().getTime() + 5 * 1000) },
+		  foreground: true // Show the notification while app is open
+		});
 	}
 	addMotivation(){
-		this.showAlert("TEST", this.name);
-		console.log(new Date(this.firstDate));
-		this.scheduleNotification();
-		var temp = Math.floor(Math.random() * 100000000000000000000);
-				this.localNotifications.schedule({			
-					id: temp,
-					title: this.name + " Alert!",
-					text: this.name + ' has been Triggered! Time to do your thing!',
-					trigger: {at: new Date(this.firstDate)},
-					led: 'FF0000',
-					sound: this.sound,
-					foreground: true
+		if(this.name != undefined && this.remind != undefined && this.firstDate != undefined){
+			this.showAlert("TEST", this.name);
+			console.log(new Date(this.firstDate));
+			this.scheduleNotification(); //Test Notification
+			var temp = Math.floor(Math.random() * 100000000000000000000);
+					this.localNotifications.schedule({			
+						id: temp,
+						title: this.name + " Alert!",
+						text: this.name + ' has been Triggered! Time to do your thing!',
+						trigger: {at: new Date(this.firstDate)},
+						led: 'FF0000',
+						sound: this.sound,
+						foreground: true
+					});
+
+			this.motivation.motivation_id = temp;
+			this.motivation.name = this.name;
+			this.motivation.remind = this.remind;
+			this.motivation.firstDate = this.firstDate;
+			this.motivation.indefToggle = this.alarmValue;
+			this.motivation.stopDate = this.stopDate;
+			this.motivation.sound = this.sound;
+
+			this.storage.addMotivation(this.motivation);
+			//Instability Fixed! (James)
+			/*this.storage.set('name', this.name).then(()=> {
+				this.storage.get('name').then((val) => {
+					console.log('Name Set ', val);
 				});
-
-		this.motivation.motivation_id = temp;
-		this.motivation.name = this.name;
-		this.motivation.remind = this.remind;
-		this.motivation.firstDate = this.firstDate;
-		this.motivation.indefToggle = this.alarmValue;
-		this.motivation.stopDate = this.stopDate;
-		this.motivation.sound = this.sound;
-
-		this.storage.addMotivation(this.motivation);
-
-		//Instability Fixed! (James)
-		/*this.storage.set('name', this.name).then(()=> {
-			this.storage.get('name').then((val) => {
-				console.log('Name Set ', val);
 			});
-		});
-		this.storage.set('remind', this.remind).then(()=> {
-			this.storage.get('remind').then((val) => {
-				console.log('Remind Set ', val);
+			this.storage.set('remind', this.remind).then(()=> {
+				this.storage.get('remind').then((val) => {
+					console.log('Remind Set ', val);
+				});
 			});
-		});
-		this.storage.set('firstDate', this.firstDate).then(()=> {
-			this.storage.get('firstDate').then((val) => {
-				console.log('firstDate Set ', val);
+			this.storage.set('firstDate', this.firstDate).then(()=> {
+				this.storage.get('firstDate').then((val) => {
+					console.log('firstDate Set ', val);
+				});
 			});
-		});
-		this.storage.set('alarmValue', this.alarmValue).then(()=> {
-			this.storage.get('alarmValue').then((val) => {
-				console.log('alarmValue Set ', val);
+			this.storage.set('alarmValue', this.alarmValue).then(()=> {
+				this.storage.get('alarmValue').then((val) => {
+					console.log('alarmValue Set ', val);
+				});
 			});
-		});
-		this.storage.set('stopDate', this.stopDate).then(()=> {
-			this.storage.get('stopDate').then((val) => {
-				console.log('stopDate Set ', val);
-			});
-		});(Commented out due to rewriting for storage. (Matt)*/
-		this.name = "";
-		this.selected = null;
-		this.remind = "";
-		this.firstDate = '';
-		this.alarmValue = true;
-		this.stopDate = '';
-		this.sound = "";
+			this.storage.set('stopDate', this.stopDate).then(()=> {
+				this.storage.get('stopDate').then((val) => {
+					console.log('stopDate Set ', val);
+				});
+			});(Commented out due to rewriting for storage. (Matt)*/
+			this.name = "";
+			this.selected = null;
+			this.remind = "";
+			this.firstDate = '';
+			this.alarmValue = true;
+			this.stopDate = '';
+			this.sound = "";
+		} else {
+			this.alertCtrl.create({
+			header: "ERROR",
+			message: "One or more Variables need to be Filled! (Motivation Name, When to Remind, and First Reminder all need to be filled)",
+			buttons: ['Ok']
+		}).then(alert => alert.present());
+		}
 
 	}
 	showAlert(header, msg) {
