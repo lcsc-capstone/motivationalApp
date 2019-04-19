@@ -24,10 +24,11 @@ export class DetailPage implements OnInit {
   	}
     ionViewWillEnter(){
       this.storage.getAllStoredMotivations().then(data =>{
-      this.items = data;
-      this.DateConvert(this.items);
-      console.log(this.items[0].name);
-      console.log(this.items)
+        this.items = data;
+        this.DateConvert(this.items);
+        console.log(typeof data);
+        console.log(this.items);
+        console.log(typeof this.items)
       })
     }
 
@@ -46,7 +47,6 @@ export class DetailPage implements OnInit {
   	};
 
   	DateConvert(items){
-  		console.log(items)
   		for(var i = 0; i < items.length; i++){
     			var buffer, buffer2,last,final,part;
           if(items[i].firstDate){

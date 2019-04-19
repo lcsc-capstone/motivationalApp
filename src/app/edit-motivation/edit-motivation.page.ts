@@ -35,6 +35,7 @@ export class EditMotivationPage implements OnInit {
 	sound: string;
 	indefToggle: boolean;
 	firstDate: any;
+	stopDate: any;
 	constructor(private storage: StorageService, private ringtones: NativeRingtones, public route: ActivatedRoute) {
 
 		this.motivation = {
@@ -87,8 +88,9 @@ export class EditMotivationPage implements OnInit {
 			this.remind = this.currentMot.remind;
 			this.firstDate = this.currentMot.firstDate;
 			this.indefToggle = this.currentMot.indefToggle;
-			this.lastRemind = this.currentMot.stopDate;
+			this.stopDate= this.currentMot.stopDate;
 			this.sound = this.currentMot.sound;
+			console.log(typeof this.currentMot);
 
 			
 		});
@@ -180,6 +182,20 @@ export class EditMotivationPage implements OnInit {
 	}
 
 	EditMotivation(){
+		/*this.storage.getAllStoredMotivations().then(data => {
+
+		});*/
+			this.currentMot.name = this.name;
+			this.currentMot.remind = this.remind;
+			this.currentMot.firstDate = this.firstRemind;
+			this.currentMot.indefToggle = this.enableAlarm;
+			if(this.currentMot.indefToggle == true)
+				this.currentMot.stopDate = '';
+			else
+				this.currentMot.stopDate = this.stopDate;
+			this.currentMot.sound = ''; //till we get sound working, temp value of nothing. (Matt)
+			console.log(this.currentMot);
+			this.storage.editMotivation(this.currentMot);
 
 	}
 
