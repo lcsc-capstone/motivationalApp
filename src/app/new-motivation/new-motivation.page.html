@@ -61,8 +61,8 @@
 		</ion-item>
 		<ion-item *ngIf = "ringtonesList!=undefined  && ringtonesList.length > 0">
 			<ion-label id="sound">Reminder Sounds</ion-label> <!-- Selector for the sounds that will play for the reminder. Will be split into our Items and the Devices --> 
-			<ion-select placeholder="..." [(ngModel)]="sound"> <!-- getting an ERROR Error: "[Object Object]" Here -->
-				<ion-select-option *ngFor = "let r of ringtonesList" [value] = "r.Url">{{ r.Name }}</ion-select-option>  
+			<ion-select placeholder="..." [(ngModel)]="sound"> 
+				<ion-select-option *ngFor = "let r of ringtonesList" [value] = "r.Url" (ionFocus)="this.ringtones.playRingtone(r.Url)" (ionBlur) = "this.ringtones.stopRingtone(r.Url)">{{ r.Name }}</ion-select-option>  
 			</ion-select>
 		</ion-item>
 	</ion-list>
