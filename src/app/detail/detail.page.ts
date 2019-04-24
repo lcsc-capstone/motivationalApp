@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController } from '@ionic/angular';
+import { Router } from '@angular/router';
 import { Motivation } from '../motivation.interface';
 import { StorageService } from '../storage.service';
 
@@ -22,7 +22,7 @@ export class DetailPage implements OnInit {
 	}
   	ngOnInit() {
   	}
-    ionViewWillEnter(){
+    ionViewDidEnter(){
       this.storage.getAllStoredMotivations().then(data =>{
         this.items = data;
         this.DateConvert(this.items);

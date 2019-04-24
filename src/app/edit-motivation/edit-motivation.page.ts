@@ -2,10 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { Storage } from '@ionic/storage';
 
 import { NativeRingtones } from '@ionic-native/native-ringtones/ngx';
-
+import { LocalNotifications, ELocalNotificationTriggerUnit, ILocalNotificationActionType, ILocalNotification } from '@ionic-native/local-notifications/ngx';
 import { Motivation } from '../motivation.interface';
+import { Router } from '@angular/router';
 import { StorageService } from '../storage.service';
 import { ActivatedRoute } from '@angular/router';
+import { Platform } from '@ionic/angular';
 
 
 @Component({
@@ -36,7 +38,7 @@ export class EditMotivationPage implements OnInit {
 	indefToggle: boolean;
 	firstDate: any;
 	stopDate: any;
-	constructor(private storage: StorageService, private ringtones: NativeRingtones, public route: ActivatedRoute) {
+	constructor(private storage: StorageService, private ringtones: NativeRingtones, public route: ActivatedRoute, public router: Router,private localNotifications: LocalNotifications,private plt: Platform) {
 
 		this.motivation = {
 			motivation_id: 0,
@@ -47,6 +49,15 @@ export class EditMotivationPage implements OnInit {
 			stopDate: '',
 			sound: '',
 		}
+
+
+		
+		this.plt.ready().then(() => {
+			this.localNotifications.on('trigger').subscribe(res => {
+				//this.showAlert(res.title, res.text);
+			});
+			this.localNotifications.on('cancel');
+		});
 		/*this.storage.getAllStoredMotivations().then(data => {
 			let id = this.route.snapshot.paramMap.get("id");
 			var temp = parseInt(id,10);
@@ -64,6 +75,7 @@ export class EditMotivationPage implements OnInit {
 		this.nowWeek = new Date((((3600000 * 24) * 7) + Date.now()) - (this.nowNum.getTimezoneOffset() * 60000));
 		this.nowMonth =  new Date((((3600000 * 24) * this.getDaysinMonth()) + Date.now()) - (this.nowNum.getTimezoneOffset() * 60000));
 		this.now = new Date(Date.now() - (this.nowNum.getTimezoneOffset() * 60000));
+
 		this.ringtones.getRingtone()
 			.then(data=> {
 					this.ringtonesList = data; 
@@ -94,8 +106,6 @@ export class EditMotivationPage implements OnInit {
 
 			
 		});
-
-
 	}
 	stopDateToggle(){
 		this.enableAlarm = !this.enableAlarm;
@@ -196,6 +206,17 @@ export class EditMotivationPage implements OnInit {
 			this.currentMot.sound = ''; //till we get sound working, temp value of nothing. (Matt)
 			console.log(this.currentMot);
 			this.storage.editMotivation(this.currentMot);
+			this.localNotifications.cancel(this.currentMot.motivation_id);
+			this.localNotifications.schedule({			
+						id: this.currentMot.motivation_id,
+						title: this.name + " Alert!",
+						text: this.name + ' has been Triggered! Time to do your thing!',
+						trigger: {at: new Date(this.currentMot.firstDate)},
+						led: 'FF0000',
+						sound: this.sound,
+						foreground: true
+					});
+			this.router.navigate(['/detail']);
 
 	}
 
