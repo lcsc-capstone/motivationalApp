@@ -1,6 +1,8 @@
 import{Storage} from '@ionic/storage';
 import{Motivation} from './motivation.interface';
 import{Injectable} from '@angular/core';
+import { LocalNotifications, ELocalNotificationTriggerUnit, ILocalNotificationActionType, ILocalNotification } from '@ionic-native/local-notifications/ngx'; //For Motivations
+import {Platform} from '@ionic/angular';
 
 const STORAGE_KEY = "StoredMotivations";
 
@@ -9,8 +11,14 @@ const STORAGE_KEY = "StoredMotivations";
 })
 
 export class StorageService {
-
-	constructor(public storage: Storage) {}
+	interval: any;
+	constructor(public storage: Storage, private localNotifications: LocalNotifications, private plt: Platform) {
+		this.plt.ready().then(() => {
+			this.localNotifications.on('trigger').subscribe(res => {
+				this.repeatMotivation();
+			});
+		});
+	}
 
 	getAllStoredMotivations(){
 		console.log(this.storage.get(STORAGE_KEY));
@@ -66,6 +74,70 @@ export class StorageService {
 
 	clearStorage(){
 		return this.storage.clear();
+	}
+	// Idea for code to get Recurring Motivations Working (James)
+	daysInMonth(month,year) {
+		return new Date(year, month, 0).getDate();
+	}
+	repeatMotivation(){
+		var newDate;
+		this.getAllStoredMotivations().then(data => {
+			for (var i = 0; i < data.length; i++){
+				if(new Date(data[i].firstDate) <= Date.now()){
+					//make variable for new time
+					switch(data[i].remind){
+						case "month":
+							newDate = new Date((((3600000 * 24) * this.getDaysinMonth()) + Date.now()) - ((new Date()).getTimezoneOffset() * 60000));
+							break;
+						case "week":
+							newDate = new Date((((3600000 * 24) * 7) + Date.now()) - ((new Date()).getTimezoneOffset() * 60000));
+							break;
+						case "day":
+							newDate = new Date(((3600000 * 24) + Date.now()) - ((new Date()).getTimezoneOffset() * 60000));
+							break;
+						case "trihour":
+							newDate = new Date(((3600000  * 3)+ Date.now()) - ((new Date()).getTimezoneOffset() * 60000))
+							while(newDate.getHours >= 21 || newDate.getHours <= 6){ //21 and 6 should be replaced by more reasonable variables
+								newDate = new Date(((3600000 * 3)  + newDate) - ((new Date()).getTimezoneOffset() * 60000))
+							}
+							break;
+						case "bihour":
+							newDate = new Date(((3600000 * 2) + Date.now()) - ((new Date()).getTimezoneOffset() * 60000))
+							while(newDate.getHours >= 21 || newDate.getHours <= 6){ //21 and 6 should be replaced by more reasonable variables
+								newDate = new Date((3600000 * 2) + newDate) - (new Date().getTimezoneOffset() * 60000))
+							}
+							break;
+						case "hour":
+							newDate = new Date((3600000 + Date.now()) - ((new Date()).getTimezoneOffset() * 60000))
+							while(newDate.getHours >= 21 || newDate.getHours <= 6){ //21 and 6 should be replaced by more reasonable variables
+								newDate = new Date((3600000 + newDate) - ((new Date()).getTimezoneOffset() * 60000))
+							}
+							break;
+						case "joke":
+							newDate = new Date((5000 + Date.now()) - ((new Date()).getTimezoneOffset() * 60000))
+							break;
+						default:
+							break;
+					}	
+				
+				//set data[i].firstDate to new variable(Needs to be the toISOString)
+				data[i].firstDate = newDate.toISOString();
+				this.storage.set(STORAGE_KEY,data);
+				//Delete Notification for current motivation, then make new Notification with new time
+				this.localNotifications.cancel(data[i].motivationid)
+				this.localNotifications.schedule({			
+						id: data[i].motivationid,
+						title: data[i].name + " Alert!",
+						text: data[i].name + ' has been Triggered! Time to do your thing!',
+						trigger: {at: newDate},
+						led: 'FF0000',
+						sound: data[i].sound,
+						foreground: true
+					});
+				return 0;
+				}
+			}
+		}
 	}
 	editMotivation(motivation: Motivation){
 			this.getAllStoredMotivations().then(data => {
