@@ -168,6 +168,7 @@ export class NewMotivationPage implements OnInit {
 			this.showAlert("TEST", this.name);
 			console.log(new Date(this.firstDate));
 			this.scheduleNotification(); //Test Notification
+			console.log(this.sound);
 			var temp = Math.floor(Math.random() * 100000000000000000000);
 					this.localNotifications.schedule({			
 						id: temp,

@@ -21,6 +21,7 @@
 				{{item.name}}
 				<ion-label class= "accordionPanel" *ngIf="isGroupShown(i)"> 
 					{{item.firstDate}}
+					<br>
 					<ion-button> Completed</ion-button>
 					<ion-button [routerLink]="'/edit-motivation/' + item.motivation_id" routerDirection="forward"> Edit </ion-button>
 
