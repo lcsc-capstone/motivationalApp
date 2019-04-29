@@ -13,13 +13,12 @@ const STORAGE_KEY = "StoredMotivations";
 export class StorageService {
 	interval: any;
 	constructor(public storage: Storage, private localNotifications: LocalNotifications, private plt: Platform) {
-		/*this.plt.ready().then(() => {
+		this.plt.ready().then(() => {
 			this.localNotifications.on('trigger').subscribe(res => {
-				this.repeatMotivation();
+				//this.repeatMotivation();
 			});
 		}); 
-		//Currently Broken
-		*/
+
 	}
 
 	getAllStoredMotivations(){
@@ -78,34 +77,34 @@ export class StorageService {
 		return this.storage.clear();
 	}
 	// Idea for code to get Recurring Motivations Working. Currently Broken (James)
-	/*daysInMonth(month,year) {
+	daysInMonth(month,year) {
 		return new Date(year, month, 0).getDate();
 	}
 	
-	repeatMotivation(){
+	/*repeatMotivation(){
 		var newDate;
 		this.getAllStoredMotivations().then(data => {
 			for (var i = 0; i < data.length; i++){
 				if(new Date(data[i].firstDate) <= Date.now()){
 					//make variable for new time
 					switch(data[i].remind){ //beginning of switch statement Errors:
-					//[ng] ERROR in src/app/storage.service.ts(119,95): error TS1005: ';' expected.
-					//[ng] src/app/storage.service.ts(122,7): error TS1068: Unexpected token. A constructor, method, accessor, or property was expected.
-					//[ng] src/app/storage.service.ts(124,21): error TS1005: ',' expected.
-					//[ng] src/app/storage.service.ts(124,31): error TS1005: ',' expected.
-					//[ng] src/app/storage.service.ts(124,61): error TS1005: ';' expected.
-					//[ng] src/app/storage.service.ts(128,7): error TS1128: Declaration or statement expected.
-					//[ng] src/app/storage.service.ts(128,18): error TS1005: ';' expected.
-					//[ng] src/app/storage.service.ts(131,7): error TS1128: Declaration or statement expected.
-					//[ng] src/app/storage.service.ts(131,14): error TS1128: Declaration or statement expected.
-					//[ng] src/app/storage.service.ts(133,6): error TS1128: Declaration or statement expected.
-					//[ng] src/app/storage.service.ts(181,5): error TS1128: Declaration or statement expected.
-					//[ng] src/app/storage.service.ts(182,4): error TS1128: Declaration or statement expected.
-					//[ng] src/app/storage.service.ts(183,3): error TS1128: Declaration or statement expected.
-					//[ng] src/app/storage.service.ts(184,2): error TS1128: Declaration or statement expected.
-					//[ng] src/app/storage.service.ts(185,27): error TS1005: ',' expected.
-					//[ng] src/app/storage.service.ts(185,40): error TS1005: ';' expected.
-					//[ng] src/app/storage.service.ts(198,1): error TS1128: Declaration or statement expected.
+					//[ng] ERROR in src/app/storage.service.ts(126,95): error TS1005: ';' expected.
+					//[ng] src/app/storage.service.ts(129,7): error TS1068: Unexpected token. A constructor, method, accessor, or property was expected.
+					//[ng] src/app/storage.service.ts(131,21): error TS1005: ',' expected.
+					//[ng] src/app/storage.service.ts(131,31): error TS1005: ',' expected.
+					//[ng] src/app/storage.service.ts(131,61): error TS1005: ';' expected.
+					//[ng] src/app/storage.service.ts(135,7): error TS1128: Declaration or statement expected.
+					//[ng] src/app/storage.service.ts(135,18): error TS1005: ';' expected.
+					//[ng] src/app/storage.service.ts(138,7): error TS1128: Declaration or statement expected.
+					//[ng] src/app/storage.service.ts(138,14): error TS1128: Declaration or statement expected.
+					//[ng] src/app/storage.service.ts(140,6): error TS1128: Declaration or statement expected.
+					//[ng] src/app/storage.service.ts(190,5): error TS1128: Declaration or statement expected.
+					//[ng] src/app/storage.service.ts(191,4): error TS1128: Declaration or statement expected.
+					//[ng] src/app/storage.service.ts(192,3): error TS1128: Declaration or statement expected.
+					//[ng] src/app/storage.service.ts(193,2): error TS1128: Declaration or statement expected.
+					//[ng] src/app/storage.service.ts(194,27): error TS1005: ',' expected.
+					//[ng] src/app/storage.service.ts(194,40): error TS1005: ';' expected.
+					//[ng] src/app/storage.service.ts(207,1): error TS1128: Declaration or statement expected.
 						case "month":
 							newDate = new Date((((3600000 * 24) * this.getDaysinMonth()) + Date.now()) - ((new Date()).getTimezoneOffset() * 60000));
 							break;
@@ -140,15 +139,15 @@ export class StorageService {
 							break;
 					} //end of switch statement 
 				//Rewritten as a if/else statement; Seems to have the same result as the switch statement... Errors 
-				//[ng] ERROR in src/app/storage.service.ts(167,93): error TS1005: ';' expected.
-				//[ng] src/app/storage.service.ts(169,6): error TS1128: Declaration or statement expected.
-				//[ng] src/app/storage.service.ts(191,5): error TS1128: Declaration or statement expected.
-				//[ng] src/app/storage.service.ts(192,4): error TS1128: Declaration or statement expected.
-				//[ng] src/app/storage.service.ts(193,3): error TS1128: Declaration or statement expected.
-				//[ng] src/app/storage.service.ts(194,2): error TS1128: Declaration or statement expected.
-				//[ng] src/app/storage.service.ts(195,27): error TS1005: ',' expected.
-				//[ng] src/app/storage.service.ts(195,40): error TS1005: ';' expected.
-				//[ng] src/app/storage.service.ts(208,1): error TS1128: Declaration or statement expected.
+				//[ng] ERROR in src/app/storage.service.ts(166,93): error TS1005: ';' expected.
+				//[ng] src/app/storage.service.ts(168,6): error TS1128: Declaration or statement expected.
+				//[ng] src/app/storage.service.ts(190,5): error TS1128: Declaration or statement expected.
+				//[ng] src/app/storage.service.ts(191,4): error TS1128: Declaration or statement expected.
+				//[ng] src/app/storage.service.ts(192,3): error TS1128: Declaration or statement expected.
+				//[ng] src/app/storage.service.ts(193,2): error TS1128: Declaration or statement expected.
+				//[ng] src/app/storage.service.ts(194,27): error TS1005: ',' expected.
+				//[ng] src/app/storage.service.ts(194,40): error TS1005: ';' expected.
+				//[ng] src/app/storage.service.ts(207,1): error TS1128: Declaration or statement expected.
 				if(data[i].remind == "month"){ 
 					
 					newDate = new Date((((3600000 * 24) * this.getDaysinMonth()) + Date.now()) - ((new Date()).getTimezoneOffset() * 60000));
@@ -173,7 +172,7 @@ export class StorageService {
 					}
 				}else if(data[i].remind == "joke"){
 					newDate = new Date((5000 + Date.now()) - ((new Date()).getTimezoneOffset() * 60000));
-				} //End of if/else statement
+				} //End of if/else statement 
 				//set data[i].firstDate to new variable(Needs to be the toISOString)
 				data[i].firstDate = newDate.toISOString();
 				this.storage.set(STORAGE_KEY,data);
