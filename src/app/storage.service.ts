@@ -15,7 +15,7 @@ export class StorageService {
 	constructor(public storage: Storage, private localNotifications: LocalNotifications, private plt: Platform) {
 		this.plt.ready().then(() => {
 			this.localNotifications.on('trigger').subscribe(res => {
-				//this.repeatMotivation();
+				this.repeatMotivation();
 			});
 		}); 
 
