@@ -81,32 +81,17 @@ export class StorageService {
 		return new Date(year, month, 0).getDate();
 	}
 	
-	/*repeatMotivation(){
+	repeatMotivation(){
 		var newDate;
 		this.getAllStoredMotivations().then(data => {
 			for (var i = 0; i < data.length; i++){
-				if(new Date(data[i].firstDate) <= Date.now()){
+				if( Number(new Date(data[i].firstDate)) <= Date.now()){
 					//make variable for new time
-					switch(data[i].remind){ //beginning of switch statement Errors:
-					//[ng] ERROR in src/app/storage.service.ts(126,95): error TS1005: ';' expected.
-					//[ng] src/app/storage.service.ts(129,7): error TS1068: Unexpected token. A constructor, method, accessor, or property was expected.
-					//[ng] src/app/storage.service.ts(131,21): error TS1005: ',' expected.
-					//[ng] src/app/storage.service.ts(131,31): error TS1005: ',' expected.
-					//[ng] src/app/storage.service.ts(131,61): error TS1005: ';' expected.
-					//[ng] src/app/storage.service.ts(135,7): error TS1128: Declaration or statement expected.
-					//[ng] src/app/storage.service.ts(135,18): error TS1005: ';' expected.
-					//[ng] src/app/storage.service.ts(138,7): error TS1128: Declaration or statement expected.
-					//[ng] src/app/storage.service.ts(138,14): error TS1128: Declaration or statement expected.
-					//[ng] src/app/storage.service.ts(140,6): error TS1128: Declaration or statement expected.
-					//[ng] src/app/storage.service.ts(190,5): error TS1128: Declaration or statement expected.
-					//[ng] src/app/storage.service.ts(191,4): error TS1128: Declaration or statement expected.
-					//[ng] src/app/storage.service.ts(192,3): error TS1128: Declaration or statement expected.
-					//[ng] src/app/storage.service.ts(193,2): error TS1128: Declaration or statement expected.
-					//[ng] src/app/storage.service.ts(194,27): error TS1005: ',' expected.
-					//[ng] src/app/storage.service.ts(194,40): error TS1005: ';' expected.
-					//[ng] src/app/storage.service.ts(207,1): error TS1128: Declaration or statement expected.
+					switch(data[i].remind){ 
+
 						case "month":
-							newDate = new Date((((3600000 * 24) * this.getDaysinMonth()) + Date.now()) - ((new Date()).getTimezoneOffset() * 60000));
+							let date = new Date();
+							newDate = new Date((((3600000 * 24) * this.daysInMonth(date.getMonth() + 1, date.getFullYear())) + Date.now()) - ((new Date()).getTimezoneOffset() * 60000));
 							break;
 						case "week":
 							newDate = new Date((((3600000 * 24) * 7) + Date.now()) - ((new Date()).getTimezoneOffset() * 60000));
@@ -123,7 +108,7 @@ export class StorageService {
 						case "bihour":
 							newDate = new Date(((3600000 * 2) + Date.now()) - ((new Date()).getTimezoneOffset() * 60000));
 							while(newDate.getHours >= 21 || newDate.getHours <= 6){ //21 and 6 should be replaced by more reasonable variables
-								newDate = new Date((3600000 * 2) + newDate) - (new Date().getTimezoneOffset() * 60000));
+								newDate = new Date(((3600000 * 2) + newDate) - (new Date().getTimezoneOffset() * 60000));
 							}
 							break;
 						case "hour":
@@ -138,59 +123,54 @@ export class StorageService {
 						default:
 							break;
 					} //end of switch statement 
-				//Rewritten as a if/else statement; Seems to have the same result as the switch statement... Errors 
-				//[ng] ERROR in src/app/storage.service.ts(166,93): error TS1005: ';' expected.
-				//[ng] src/app/storage.service.ts(168,6): error TS1128: Declaration or statement expected.
-				//[ng] src/app/storage.service.ts(190,5): error TS1128: Declaration or statement expected.
-				//[ng] src/app/storage.service.ts(191,4): error TS1128: Declaration or statement expected.
-				//[ng] src/app/storage.service.ts(192,3): error TS1128: Declaration or statement expected.
-				//[ng] src/app/storage.service.ts(193,2): error TS1128: Declaration or statement expected.
-				//[ng] src/app/storage.service.ts(194,27): error TS1005: ',' expected.
-				//[ng] src/app/storage.service.ts(194,40): error TS1005: ';' expected.
-				//[ng] src/app/storage.service.ts(207,1): error TS1128: Declaration or statement expected.
-				if(data[i].remind == "month"){ 
-					
-					newDate = new Date((((3600000 * 24) * this.getDaysinMonth()) + Date.now()) - ((new Date()).getTimezoneOffset() * 60000));
-				}else if(data[i].remind == "week"){
-					newDate = new Date((((3600000 * 24) * 7) + Date.now()) - ((new Date()).getTimezoneOffset() * 60000));
-				}else if(data[i].remind == "day"){
-					newDate = new Date(((3600000 * 24) + Date.now()) - ((new Date()).getTimezoneOffset() * 60000));
-				}else if(data[i].remind == "trihour"){
-					newDate = new Date(((3600000  * 3)+ Date.now()) - ((new Date()).getTimezoneOffset() * 60000));
-					while(newDate.getHours >= 21 || newDate.getHours <= 6){ //21 and 6 should be replaced by more reasonable variables
-						newDate = new Date(((3600000 * 3)  + newDate) - ((new Date()).getTimezoneOffset() * 60000));
-					}
-				}else if(data[i].remind == "bihour"){
-					newDate = new Date(((3600000 * 2) + Date.now()) - ((new Date()).getTimezoneOffset() * 60000));
-					while(newDate.getHours >= 21 || newDate.getHours <= 6){ //21 and 6 should be replaced by more reasonable variables
-						newDate = new Date((3600000 * 2) + newDate) - (new Date().getTimezoneOffset() * 60000));
-					}
-				}else if(data[i].remind == "hour"){
-					newDate = new Date((3600000 + Date.now()) - ((new Date()).getTimezoneOffset() * 60000));
-					while(newDate.getHours >= 21 || newDate.getHours <= 6){ //21 and 6 should be replaced by more reasonable variables
-						newDate = new Date((3600000 + newDate) - ((new Date()).getTimezoneOffset() * 60000));
-					}
-				}else if(data[i].remind == "joke"){
-					newDate = new Date((5000 + Date.now()) - ((new Date()).getTimezoneOffset() * 60000));
-				} //End of if/else statement 
-				//set data[i].firstDate to new variable(Needs to be the toISOString)
-				data[i].firstDate = newDate.toISOString();
-				this.storage.set(STORAGE_KEY,data);
-				//Delete Notification for current motivation, then make new Notification with new time
-				this.localNotifications.cancel(data[i].motivationid);
-				this.localNotifications.schedule({			
-						id: data[i].motivationid,
-						title: data[i].name + " Alert!",
-						text: data[i].name + ' has been Triggered! Time to do your thing!',
-						trigger: {at: newDate},
-						led: 'FF0000',
-						sound: data[i].sound,
-						foreground: true
+
+					// commented out if statements, will need to fix if we want to use this instead
+					// if(data[i].remind == "month"){ 
+						
+					// 	newDate = new Date((((3600000 * 24) * this.getDaysinMonth()) + Date.now()) - ((new Date()).getTimezoneOffset() * 60000));
+					// }else if(data[i].remind == "week"){
+					// 	newDate = new Date((((3600000 * 24) * 7) + Date.now()) - ((new Date()).getTimezoneOffset() * 60000));
+					// }else if(data[i].remind == "day"){
+					// 	newDate = new Date(((3600000 * 24) + Date.now()) - ((new Date()).getTimezoneOffset() * 60000));
+					// }else if(data[i].remind == "trihour"){
+					// 	newDate = new Date(((3600000  * 3)+ Date.now()) - ((new Date()).getTimezoneOffset() * 60000));
+					// 	while(newDate.getHours >= 21 || newDate.getHours <= 6){ //21 and 6 should be replaced by more reasonable variables
+					// 		newDate = new Date(((3600000 * 3)  + newDate) - ((new Date()).getTimezoneOffset() * 60000));
+					// 	}
+					// }else if(data[i].remind == "bihour"){
+					// 	newDate = new Date(((3600000 * 2) + Date.now()) - ((new Date()).getTimezoneOffset() * 60000));
+					// 	while(newDate.getHours >= 21 || newDate.getHours <= 6){ //21 and 6 should be replaced by more reasonable variables
+					// 		newDate = new Date((3600000 * 2) + newDate) - (new Date().getTimezoneOffset() * 60000));
+					// 	}
+					// }else if(data[i].remind == "hour"){
+					// 	newDate = new Date((3600000 + Date.now()) - ((new Date()).getTimezoneOffset() * 60000));
+					// 	while(newDate.getHours >= 21 || newDate.getHours <= 6){ //21 and 6 should be replaced by more reasonable variables
+					// 		newDate = new Date((3600000 + newDate) - ((new Date()).getTimezoneOffset() * 60000));
+					// 	}
+					// }else if(data[i].remind == "joke"){
+					// 	newDate = new Date((5000 + Date.now()) - ((new Date()).getTimezoneOffset() * 60000));
+					// } //End of if/else statement 
+
+					//set data[i].firstDate to new variable(Needs to be the toISOString)
+					data[i].firstDate = newDate.toISOString();
+					this.storage.set(STORAGE_KEY,data);
+					//Delete Notification for current motivation, then make new Notification with new time
+					this.localNotifications.cancel(data[i].motivationid);
+					this.localNotifications.schedule({			
+							id: data[i].motivationid,
+							title: data[i].name + " Alert!",
+							text: data[i].name + ' has been Triggered! Time to do your thing!',
+							trigger: {at: newDate},
+							led: 'FF0000',
+							sound: data[i].sound,
+							foreground: true
 					});
 				}
 			}
-		}
-	}*/
+		});
+	}
+
+
 	editMotivation(motivation: Motivation){
 			this.getAllStoredMotivations().then(data => {
 				for(var i = 0; i < data.length; i++){
