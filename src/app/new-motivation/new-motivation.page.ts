@@ -56,7 +56,7 @@ export class NewMotivationPage implements OnInit {
 		this.nowDay = new Date(((3600000 * 24) + Date.now()));
 		this.nowWeek = new Date((((3600000 * 24) * 7) + Date.now()));
 		this.nowMonth =  new Date((((3600000 * 24) * this.getDaysinMonth()) + Date.now()));
-		this.now = new Date().now();
+		this.now = Date.now();
 		this.ringtones.getRingtone()
 			.then(data=> {
 					this.ringtonesList = data; 

@@ -91,7 +91,7 @@ export class StorageService {
 		var newDate;
 		this.getAllStoredMotivations().then(data => {
 			for (var i = 0; i < data.length; i++){
-				if( Number(new Date(data[i].firstDate)) <= Date.now()){
+				if(Number(new Date(data[i].firstDate)) <= Date.now()){
 					//make variable for new time
 					switch(data[i].remind){ 
 
@@ -100,7 +100,7 @@ export class StorageService {
 							newDate = new Date((((3600000 * 24) * this.daysInMonth(date.getMonth() + 1, date.getFullYear())) + Date.now()));
 							break;
 						case "week":
-							newDate = new Date((((3600000 * 24) * 7) + Date.now())));
+							newDate = new Date((((3600000 * 24) * 7) + Date.now()));
 							break;
 						case "day":
 							newDate = new Date(((3600000 * 24) + Date.now()));
@@ -118,7 +118,7 @@ export class StorageService {
 							}
 							break;
 						case "hour":
-							newDate = new Date((3600000 + Date.now())));
+							newDate = new Date((3600000 + Date.now()));
 							while(newDate.getHours >= 21 || newDate.getHours <= 6){ //21 and 6 should be replaced by more reasonable variables
 								newDate = new Date((3600000 + newDate));
 							}
