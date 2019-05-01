@@ -52,11 +52,11 @@ export class NewMotivationPage implements OnInit {
 		this.alarmValue = true;
 		this.enableAlarm = false;
 		this.nowNum = new Date();
-		this.nowHour = new Date((3600000 + Date.now()) - (this.nowNum.getTimezoneOffset() * 60000));
-		this.nowDay = new Date(((3600000 * 24) + Date.now()) - (this.nowNum.getTimezoneOffset() * 60000));
-		this.nowWeek = new Date((((3600000 * 24) * 7) + Date.now()) - (this.nowNum.getTimezoneOffset() * 60000));
-		this.nowMonth =  new Date((((3600000 * 24) * this.getDaysinMonth()) + Date.now()) - (this.nowNum.getTimezoneOffset() * 60000));
-		this.now = new Date(Date.now() - (this.nowNum.getTimezoneOffset() * 60000));
+		this.nowHour = new Date((3600000 + Date.now()));
+		this.nowDay = new Date(((3600000 * 24) + Date.now()));
+		this.nowWeek = new Date((((3600000 * 24) * 7) + Date.now()));
+		this.nowMonth =  new Date((((3600000 * 24) * this.getDaysinMonth()) + Date.now()));
+		this.now = new Date().now();
 		this.ringtones.getRingtone()
 			.then(data=> {
 					this.ringtonesList = data; 
