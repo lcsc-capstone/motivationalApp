@@ -197,8 +197,9 @@ export class EditMotivationPage implements OnInit {
 		});*/
 			this.currentMot.name = this.name;
 			this.currentMot.remind = this.remind;
-			this.currentMot.firstDate = this.firstRemind;
-			console.log(this.currentMot.firstDate);
+			console.log(this.firstDate);
+			this.currentMot.firstDate = this.firstDate;
+			
 			this.currentMot.indefToggle = this.enableAlarm;
 			if(this.currentMot.indefToggle == true)
 				this.currentMot.stopDate = '';

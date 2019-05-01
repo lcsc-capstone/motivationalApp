@@ -12,6 +12,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { IonicStorageModule } from '@ionic/storage';
 import { SettingsService } from './settings.service';
 import { StorageService } from './storage.service';
+import { File } from '@ionic-native/file/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -28,6 +29,7 @@ import { StorageService } from './storage.service';
     SplashScreen,
 	StorageService,
   NativeRingtones,
+  File,
 	LocalNotifications,
 
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }

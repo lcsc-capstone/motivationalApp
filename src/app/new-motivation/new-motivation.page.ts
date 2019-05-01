@@ -5,6 +5,7 @@ import { LocalNotifications, ELocalNotificationTriggerUnit, ILocalNotificationAc
 import { NativeRingtones } from '@ionic-native/native-ringtones/ngx';
 import { Motivation } from '../motivation.interface';
 import { StorageService } from '../storage.service';
+import { File } from '@ionic-native/file/ngx';
 
 
 @Component({
@@ -31,7 +32,7 @@ export class NewMotivationPage implements OnInit {
 	stopDate: any; //last Date/time for Reminder
 	ringtonesList: any;
 	sound: string;
-	constructor(private plt: Platform, private storage: StorageService, private ringtones: NativeRingtones, private localNotifications: LocalNotifications, private alertCtrl: AlertController) { 
+	constructor(private plt: Platform, private storage: StorageService, private ringtones: NativeRingtones, private localNotifications: LocalNotifications, private alertCtrl: AlertController, private file: File) { 
 
 		this.motivation = {
 			motivation_id: 0,
@@ -44,7 +45,6 @@ export class NewMotivationPage implements OnInit {
 		}
 		this.plt.ready().then(() => {
 			this.localNotifications.on('trigger').subscribe(res => {
-				this.showAlert(res.title, res.text);
 			});
 		});
 		
@@ -60,10 +60,10 @@ export class NewMotivationPage implements OnInit {
 		this.ringtones.getRingtone()
 			.then(data=> {
 					this.ringtonesList = data; 
-					console.log(this.ringtonesList);
+					//console.log(this.ringtonesList);
 				}
 			).catch(res=> {
-				console.log(res);
+				//console.log(res);
 			}
 			) 
 	} 
@@ -165,10 +165,10 @@ export class NewMotivationPage implements OnInit {
 	}
 	addMotivation(){
 		if(this.name != undefined && this.remind != undefined && this.firstDate != undefined){
-			this.showAlert("TEST", this.name);
-			console.log(new Date(this.firstDate));
+			//console.log(new Date(this.firstDate));
 			this.scheduleNotification(); //Test Notification
 			console.log(this.sound);
+			console.log(typeof this.sound);
 			var temp = Math.floor(Math.random() * 100000000000000000000);
 					this.localNotifications.schedule({			
 						id: temp,
@@ -176,7 +176,7 @@ export class NewMotivationPage implements OnInit {
 						text: this.name + ' has been Triggered! Time to do your thing!',
 						trigger: {at: new Date(this.firstDate)},
 						led: 'FF0000',
-						sound: this.sound,
+						sound: 'file://assets/Audio/consequence.mp3',
 						foreground: true
 					});
 
