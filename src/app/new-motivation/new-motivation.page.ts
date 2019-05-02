@@ -6,6 +6,7 @@ import { NativeRingtones } from '@ionic-native/native-ringtones/ngx';
 import { Motivation } from '../motivation.interface';
 import { StorageService } from '../storage.service';
 import { File } from '@ionic-native/file/ngx';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -32,7 +33,7 @@ export class NewMotivationPage implements OnInit {
 	stopDate: any; //last Date/time for Reminder
 	ringtonesList: any;
 	sound: string;
-	constructor(private plt: Platform, private storage: StorageService, private ringtones: NativeRingtones, private localNotifications: LocalNotifications, private alertCtrl: AlertController, private file: File) { 
+	constructor(private plt: Platform, private storage: StorageService, private ringtones: NativeRingtones, private localNotifications: LocalNotifications, private alertCtrl: AlertController, private file: File,public router: Router) { 
 
 		this.motivation = {
 			motivation_id: 0,
@@ -231,7 +232,7 @@ export class NewMotivationPage implements OnInit {
 			buttons: ['Ok']
 		}).then(alert => alert.present());
 		}
-
+		this.router.navigate(['/detail']);
 	}
 	showAlert(header, msg) {
 		this.alertCtrl.create({
