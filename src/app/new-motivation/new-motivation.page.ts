@@ -42,13 +42,7 @@ export class NewMotivationPage implements OnInit {
 			stopDate: '',
 			sound: ''
 		}
-		this.plt.ready().then(() => {
-			this.localNotifications.on('trigger').subscribe(res => {
-				this.showAlert(res.title, res.text);
-			});
-		});
 		
-
 		this.alarmValue = true;
 		this.enableAlarm = false;
 		this.nowNum = new Date();
