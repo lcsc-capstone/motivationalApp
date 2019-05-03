@@ -64,11 +64,13 @@ export class DetailPage implements OnInit {
         
     };
     removeMot(mot){
-        this.localNotifications.cancel(mot.motivation_id);
-        this.storage.removeMotivation(mot);
+        
+        
         for(var i = 0; i < this.items.length; i++){
           if(this.items[i].motivation_id == mot.motivation_id){
             this.items.splice(i,1);
+            this.storage.removeMotivation(mot);
+            this.localNotifications.cancel(mot.motivation_id);
           }
         }
       

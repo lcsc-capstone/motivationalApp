@@ -41,11 +41,21 @@ export class StorageService {
 
 	removeMotivation( motivation: Motivation){
 		return this.getAllStoredMotivations().then(data => {
-			if(data){
+
+			/*if(data){
 				let index = data.indexOf(motivation);
-				this.localNotifications.cancel(data[index].motivationid);
+				this.localNotifications.cancel(data[index].motivation_id);
 				data.splice(index,1);
 				return this.storage.set(STORAGE_KEY, data);
+			}*/
+			console.log(motivation);
+			console.log("buffer");
+			console.log(data[0].motivation_id);
+			for(var i = 0; i < data.length; i++){
+				if(data[i].motivation_id == motivation.motivation_id){
+					data.splice(i,1);
+					return this.storage.set(STORAGE_KEY,data);
+				}
 			}
 		});
 	}
